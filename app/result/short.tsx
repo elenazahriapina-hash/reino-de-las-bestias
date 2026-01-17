@@ -2,12 +2,6 @@ import { View, Text, Image, TouchableOpacity, ActivityIndicator, ScrollView } fr
 import { useEffect, useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import ru from "../../src/lang/ru";
-import en from "../../src/lang/en";
-import es from "../../src/lang/es";
-import pt from "../../src/lang/pt";
-
 import { styles } from "../../src/styles/startScreenStyles";
 import { sendTestToBackend } from "../../src/api/backend";
 import {
@@ -17,7 +11,9 @@ import {
     type Gender,
 } from "../../src/utils/animals";
 
-type Lang = "ru" | "en" | "es" | "pt";
+import { getTranslations, type Lang } from "../../src/lang";
+import { useResolvedLang } from "../../src/lang/useResolvedLang";
+import { normalizeResultText } from "../../src/lang/resultText";
 
 type ShortResult = {
     animal: AnimalCode;
@@ -35,8 +31,8 @@ export default function ShortResultScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
-    const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = useResolvedLang(lang);
+    const t = getTranslations(resolvedLang);
 
     const [loading, setLoading] = useState(true);
     const [result, setResult] = useState<ShortResult | null>(null);
@@ -69,7 +65,7 @@ export default function ShortResultScreen() {
 
                 const payload = {
                     name,
-                    lang: (lang ?? "ru") as Lang,
+                    lang: resolvedLang,
                     gender, // отправляем уже нормализованный gender
                     answers,
                 };
@@ -104,7 +100,7 @@ export default function ShortResultScreen() {
         };
 
         loadResult();
-    }, [lang]);
+    }, [resolvedLang, t.shortError]);
 
     if (loading) {
         return (
@@ -140,7 +136,7 @@ export default function ShortResultScreen() {
             {error ? (
                 <Text style={styles.quote}>{error}</Text>
             ) : result ? (
-                <Text style={styles.quote}>{result.text}</Text>
+                <Text style={styles.quote}>{normalizeResultText(result.text, resolvedLang)}</Text>
             ) : (
                 <Text style={styles.quote}>{t.noResult}</Text>
             )}
@@ -148,7 +144,7 @@ export default function ShortResultScreen() {
             <View style={styles.bottom}>
                 <TouchableOpacity style={styles.button} onPress={() => router.push({
                     pathname: "/result/full",
-                    params: { lang }
+                    params: { lang: resolvedLang }
                 } as any)}>
                     <Text style={styles.buttonText}>{t.getFull}</Text>
                 </TouchableOpacity>

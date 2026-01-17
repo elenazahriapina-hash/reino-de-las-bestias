@@ -12,8 +12,7 @@ export type TestPayload = {
     answers: TestAnswer[];
 };
 
-const API_URL = "http://192.168.0.14:8000/analyze";
-
+const API_BASE = "http://192.168.0.18:8000";
 
 export async function sendTestToBackend<T>(
     endpoint: "short" | "full",
@@ -22,27 +21,22 @@ export async function sendTestToBackend<T>(
     let response: Response;
 
     try {
-        response = await fetch(`${API_URL}/${endpoint}`, {
+        response = await fetch(`${API_BASE}/analyze/${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
         });
-    } catch (e: any) {
-        // сюда попадают проблемы сети / IP / порт / firewall
+    } catch {
         throw new Error("networkError");
     }
 
     if (!response.ok) {
-        // пытаемся достать detail от FastAPI: {"detail":"..."}
         try {
             const data = await response.json();
             const detail =
-                typeof data?.detail === "string"
-                    ? data.detail
-                    : `HTTP ${response.status}`;
+                typeof data?.detail === "string" ? data.detail : `HTTP ${response.status}`;
             throw new Error(detail);
         } catch {
-            // если ответ не JSON
             const text = await response.text().catch(() => "");
             throw new Error(text || `HTTP ${response.status}`);
         }

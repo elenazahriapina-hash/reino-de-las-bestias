@@ -7,6 +7,7 @@ const ru = {
   nameTitle: "Как к тебе обращаться?",
   nameHint: "Напиши своё имя или никнейм",
   namePlaceholder: "Ваше имя",
+  ok: "ОК",
 
   finishTitle: "Тест завершён",
   finishText: "Мы анализируем твои ответы, чтобы показать твой архетип.",
@@ -28,7 +29,15 @@ const ru = {
   element: "Стихия",
   values: "Ценности",
   conclusion: "Заключение",
-
+  profile: "Профиль",
+  energy: "Энергия",
+  tempo: "Темп",
+  sociality: "Социальность",
+  thinking: "Мышление",
+  conflicts: "Конфликты",
+  openQuestions: "Открытые вопросы",
+  paywallTitle: "Полный разбор",
+  paywallDescription: "Экран оплаты (заглушка)",
 };
 
 export default ru;

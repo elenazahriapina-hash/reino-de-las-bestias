@@ -9,16 +9,11 @@ import {
 import { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import ru from "../../src/lang/ru";
-import en from "../../src/lang/en";
-import es from "../../src/lang/es";
-import pt from "../../src/lang/pt";
-
 import { styles } from "../../src/styles/startScreenStyles";
 import { sendTestToBackend } from "../../src/api/backend";
-
-type Lang = "ru" | "en" | "es" | "pt";
+import { getTranslations, type Lang } from "../../src/lang";
+import { useResolvedLang } from "../../src/lang/useResolvedLang";
+import { normalizeResultText } from "../../src/lang/resultText";
 
 type FullResponse = {
     type: "full";
@@ -30,8 +25,8 @@ type FullResponse = {
 export default function FullResultScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
-    const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = useResolvedLang(lang);
+    const t = getTranslations(resolvedLang);
 
     const [loading, setLoading] = useState(true);
     const [text, setText] = useState("");
@@ -66,7 +61,7 @@ export default function FullResultScreen() {
 
                 const payload = {
                     name,
-                    lang: (lang ?? "ru") as Lang,
+                    lang: resolvedLang,
                     gender,
                     animal,
                     element,
@@ -78,10 +73,10 @@ export default function FullResultScreen() {
                     payload
                 );
 
-                setText(response.result.text);
+                setText(normalizeResultText(response.result.text, resolvedLang));
 
             } catch (e: any) {
-                console.error("Ошибка получения full-результата", e);
+                console.error(t.fullError, e);
                 setError(t.fullError);
             } finally {
                 setLoading(false);
@@ -89,7 +84,7 @@ export default function FullResultScreen() {
         };
 
         loadFullResult();
-    }, [lang]);
+    }, [resolvedLang, t.fullError]);
 
     if (loading) {
         return (
@@ -126,4 +121,3 @@ export default function FullResultScreen() {
         </ScrollView>
     );
 }
-
