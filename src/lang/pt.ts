@@ -7,6 +7,7 @@ const pt = {
     nameTitle: "Como devemos dirigir-nos a si?",
     nameHint: "Escreva o seu nome ou alcunha",
     namePlaceholder: "O seu nome",
+    ok: "OK",
 
     finishTitle: "Teste concluído",
     finishText: "Analisamos suas respostas para mostrar seu arquétipo.",
@@ -28,8 +29,14 @@ const pt = {
     element: "Elemento",
     values: "Valores",
     conclusion: "Conclusão",
-
-
+    profile: "Perfil",
+    energy: "Energia",
+    tempo: "Ritmo",
+    sociality: "Sociabilidade",
+    thinking: "Pensamento",
+    conflicts: "Conflitos",
+    openQuestions: "Perguntas abertas",
+    paywallTitle: "Análise completa",
+    paywallDescription: "Ecrã de pagamento (placeholder)",
 };
-
 export default pt;

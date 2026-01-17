@@ -4,21 +4,17 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ru from "../../src/lang/ru";
-import en from "../../src/lang/en";
-import es from "../../src/lang/es";
-import pt from "../../src/lang/pt";
-
 import { styles } from "../../src/styles/startScreenStyles";
 
-type Lang = "ru" | "en" | "es" | "pt";
+import { getTranslations, type Lang } from "../../src/lang";
+import { useResolvedLang } from "../../src/lang/useResolvedLang";
 
 export default function FinishScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
-    const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = useResolvedLang(lang);
+    const t = getTranslations(resolvedLang);
 
     const [name, setName] = useState<string>("");
     const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -83,7 +79,7 @@ export default function FinishScreen() {
                         onPress={() =>
                             router.push({
                                 pathname: "/result/short",
-                                params: { lang },
+                                params: { lang: resolvedLang },
                             })
                         }
                     >

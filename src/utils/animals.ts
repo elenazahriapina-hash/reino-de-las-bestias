@@ -1,4 +1,5 @@
 // src/utils/animals.ts
+import type { Lang } from "../data/questions";
 
 export type ElementRu = "Воздух" | "Вода" | "Огонь" | "Земля";
 
@@ -44,6 +45,141 @@ export const ANIMAL_RU: Record<AnimalCode, { male: string; female: string }> = {
     Turtle: { male: "Черепаха", female: "Черепаха" },
     Lizard: { male: "Ящерица", female: "Ящерица" },
 };
+
+export const ELEMENT_NAMES: Record<Lang, Record<ElementRu, string>> = {
+    ru: {
+        "Воздух": "Воздух",
+        "Вода": "Вода",
+        "Огонь": "Огонь",
+        "Земля": "Земля",
+    },
+    en: {
+        "Воздух": "Air",
+        "Вода": "Water",
+        "Огонь": "Fire",
+        "Земля": "Earth",
+    },
+    es: {
+        "Воздух": "Aire",
+        "Вода": "Agua",
+        "Огонь": "Fuego",
+        "Земля": "Tierra",
+    },
+    pt: {
+        "Воздух": "Ar",
+        "Вода": "Água",
+        "Огонь": "Fogo",
+        "Земля": "Terra",
+    },
+};
+
+export const ANIMAL_NAMES: Record<Lang, Record<AnimalCode, { male: string; female: string }>> = {
+    ru: ANIMAL_RU,
+    en: {
+        Wolf: { male: "Wolf", female: "Wolf" },
+        Lion: { male: "Lion", female: "Lioness" },
+        Tiger: { male: "Tiger", female: "Tigress" },
+        Lynx: { male: "Lynx", female: "Lynx" },
+        Panther: { male: "Panther", female: "Panther" },
+        Bear: { male: "Bear", female: "Bear" },
+        Fox: { male: "Fox", female: "Fox" },
+        Wolverine: { male: "Wolverine", female: "Wolverine" },
+        Deer: { male: "Deer", female: "Deer" },
+        Monkey: { male: "Monkey", female: "Monkey" },
+        Rabbit: { male: "Rabbit", female: "Rabbit" },
+        Buffalo: { male: "Buffalo", female: "Buffalo" },
+        Ram: { male: "Ram", female: "Ibex" },
+        Capybara: { male: "Capybara", female: "Capybara" },
+        Elephant: { male: "Elephant", female: "Elephant" },
+        Horse: { male: "Horse", female: "Mare" },
+        Eagle: { male: "Eagle", female: "Eagle" },
+        Owl: { male: "Owl", female: "Owl" },
+        Raven: { male: "Raven", female: "Raven" },
+        Parrot: { male: "Parrot", female: "Parrot" },
+        Snake: { male: "Snake", female: "Snake" },
+        Crocodile: { male: "Crocodile", female: "Crocodile" },
+        Turtle: { male: "Turtle", female: "Turtle" },
+        Lizard: { male: "Lizard", female: "Lizard" },
+    },
+    es: {
+        Wolf: { male: "Lobo", female: "Loba" },
+        Lion: { male: "León", female: "Leona" },
+        Tiger: { male: "Tigre", female: "Tigresa" },
+        Lynx: { male: "Lince", female: "Lince" },
+        Panther: { male: "Pantera", female: "Pantera" },
+        Bear: { male: "Oso", female: "Osa" },
+        Fox: { male: "Zorro", female: "Zorra" },
+        Wolverine: { male: "Glotón", female: "Glotona" },
+        Deer: { male: "Ciervo", female: "Cierva" },
+        Monkey: { male: "Mono", female: "Mona" },
+        Rabbit: { male: "Conejo", female: "Coneja" },
+        Buffalo: { male: "Búfalo", female: "Búfala" },
+        Ram: { male: "Carnero", female: "Íbice" },
+        Capybara: { male: "Capibara", female: "Capibara" },
+        Elephant: { male: "Elefante", female: "Elefanta" },
+        Horse: { male: "Caballo", female: "Yegua" },
+        Eagle: { male: "Águila", female: "Águila" },
+        Owl: { male: "Búho", female: "Lechuza" },
+        Raven: { male: "Cuervo", female: "Cuerva" },
+        Parrot: { male: "Loro", female: "Loro" },
+        Snake: { male: "Serpiente", female: "Serpiente" },
+        Crocodile: { male: "Cocodrilo", female: "Cocodrilo" },
+        Turtle: { male: "Tortuga", female: "Tortuga" },
+        Lizard: { male: "Lagarto", female: "Lagarto" },
+    },
+    pt: {
+        Wolf: { male: "Lobo", female: "Loba" },
+        Lion: { male: "Leão", female: "Leoa" },
+        Tiger: { male: "Tigre", female: "Tigresa" },
+        Lynx: { male: "Lince", female: "Lince" },
+        Panther: { male: "Pantera", female: "Pantera" },
+        Bear: { male: "Urso", female: "Ursa" },
+        Fox: { male: "Raposo", female: "Raposa" },
+        Wolverine: { male: "Carcaju", female: "Carcaju" },
+        Deer: { male: "Veado", female: "Cerva" },
+        Monkey: { male: "Macaco", female: "Macaca" },
+        Rabbit: { male: "Coelho", female: "Coelha" },
+        Buffalo: { male: "Búfalo", female: "Búfala" },
+        Ram: { male: "Carneiro", female: "Íbex" },
+        Capybara: { male: "Capivara", female: "Capivara" },
+        Elephant: { male: "Elefante", female: "Elefanta" },
+        Horse: { male: "Cavalo", female: "Égua" },
+        Eagle: { male: "Águia", female: "Águia" },
+        Owl: { male: "Coruja", female: "Coruja" },
+        Raven: { male: "Corvo", female: "Corvo" },
+        Parrot: { male: "Papagaio", female: "Papagaia" },
+        Snake: { male: "Serpente", female: "Serpente" },
+        Crocodile: { male: "Crocodilo", female: "Crocodilo" },
+        Turtle: { male: "Tartaruga", female: "Tartaruga" },
+        Lizard: { male: "Lagarto", female: "Lagarto" },
+    },
+};
+
+export function getElementName(element: ElementRu, lang: Lang) {
+    return ELEMENT_NAMES[lang][element] ?? element;
+}
+
+export function getAnimalName(animal: AnimalCode, gender: Gender, lang: Lang) {
+    const g: Gender = gender ?? "unspecified";
+    const names = ANIMAL_NAMES[lang] ?? ANIMAL_RU;
+    return g === "female" ? names[animal].female : names[animal].male;
+}
+
+export function getAnimalNameMap(lang: Lang) {
+    const names = ANIMAL_NAMES[lang] ?? ANIMAL_RU;
+    const map: Record<string, string> = {};
+    (Object.keys(ANIMAL_RU) as AnimalCode[]).forEach((animal) => {
+        const ruNames = ANIMAL_RU[animal];
+        const localized = names[animal];
+        map[ruNames.male] = localized.male;
+        map[ruNames.female] = localized.female;
+    });
+    return map;
+}
+
+export function getElementNameMap(lang: Lang) {
+    return ELEMENT_NAMES[lang];
+}
 
 // у этих зверей есть женская версия файла *_f.png
 const FEMALE_IMAGE_SUPPORTED: ReadonlySet<AnimalCode> = new Set<AnimalCode>([

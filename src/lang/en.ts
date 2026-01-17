@@ -7,6 +7,7 @@ const en = {
     nameTitle: "How should we address you?",
     nameHint: "Write your name or nickname",
     namePlaceholder: "Your name",
+    ok: "OK",
 
     finishTitle: "Test completed",
     finishText: "We are analyzing your answers to reveal your archetype.",
@@ -28,8 +29,15 @@ const en = {
     element: "Element",
     values: "Values",
     conclusion: "Conclusion",
-
-
+    profile: "Profile",
+    energy: "Energy",
+    tempo: "Pace",
+    sociality: "Sociality",
+    thinking: "Thinking",
+    conflicts: "Conflicts",
+    openQuestions: "Open questions",
+    paywallTitle: "Full analysis",
+    paywallDescription: "Payment screen (placeholder)",
 };
 
 export default en;

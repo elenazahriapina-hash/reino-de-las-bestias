@@ -3,15 +3,11 @@ import { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ru from "../../src/lang/ru";
-import en from "../../src/lang/en";
-import es from "../../src/lang/es";
-import pt from "../../src/lang/pt";
-
 import { styles } from "../../src/styles/startScreenStyles";
 import { questions } from "../../src/data/questions";
 
-type Lang = "ru" | "en" | "es" | "pt";
+import { getTranslations, type Lang } from "../../src/lang";
+import { useResolvedLang } from "../../src/lang/useResolvedLang";
 
 export default function QuestionScreen() {
     const router = useRouter();
@@ -21,18 +17,20 @@ export default function QuestionScreen() {
     }>();
 
     const currentStep = Number(step ?? 1);
-    const currentLang = (lang ?? "ru") as "ru" | "en" | "es" | "pt";
-    const translations = { ru, en, es, pt };
-    const t = translations[currentLang];
+    const currentLang = useResolvedLang(lang);
+    const t = getTranslations(currentLang);
     const question = questions[currentStep - 1];
 
     const [answer, setAnswer] = useState<string>("");
 
     useEffect(() => {
         if (!question) {
-            router.replace("/test/finish");
+            router.replace({
+                pathname: "/test/finish",
+                params: { lang: currentLang },
+            });
         }
-    }, [question]);
+    }, [question, currentLang, router]);
 
     if (!question) {
         return null;

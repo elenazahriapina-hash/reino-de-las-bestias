@@ -1,22 +1,19 @@
 import { View, Text, TouchableOpacity, TextInput, Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from "react-native";
 import { useState } from "react";
-import ru from "../src/lang/ru";
-import en from "../src/lang/en";
-import es from "../src/lang/es";
-import pt from "../src/lang/pt";
+
 
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { styles } from "../src/styles/startScreenStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-type Lang = "ru" | "en" | "es" | "pt";
+import { getTranslations, type Lang } from "../src/lang";
+import { useResolvedLang } from "../src/lang/useResolvedLang";
 
 export default function NameScreen() {
     const router = useRouter(); // ✅ внутри компонента
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
-    const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = useResolvedLang(lang);
+    const t = getTranslations(resolvedLang);
 
     const [name, setName] = useState("");
 
@@ -50,11 +47,11 @@ export default function NameScreen() {
                                 await AsyncStorage.setItem("userName", name.trim());
                                 router.push({
                                     pathname: "/test/question",
-                                    params: { step: "1", lang: lang ?? "ru" }, // ✅ step лучше строкой
+                                    params: { step: "1", lang: resolvedLang }, // ✅ step лучше строкой
                                 });
                             }}
                         >
-                            <Text style={styles.buttonText}>OK</Text>
+                            <Text style={styles.buttonText}>{t.ok}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

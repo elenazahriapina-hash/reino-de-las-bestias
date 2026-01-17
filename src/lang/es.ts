@@ -7,6 +7,7 @@ const es = {
     nameTitle: "Cómo deberíamos dirigirnos a usted",
     nameHint: "Escriba su nombre o apodo",
     namePlaceholder: "Su nombre",
+    ok: "OK",
 
     finishTitle: "Test completado",
     finishText: "Estamos analizando tus respuestas para revelar tu arquetipo.",
@@ -30,6 +31,15 @@ const es = {
     element: "Elemento",
     values: "Valores",
     conclusion: "Conclusión",
+    profile: "Perfil",
+    energy: "Energía",
+    tempo: "Ritmo",
+    sociality: "Sociabilidad",
+    thinking: "Pensamiento",
+    conflicts: "Conflictos",
+    openQuestions: "Preguntas abiertas",
+    paywallTitle: "Análisis completo",
+    paywallDescription: "Pantalla de pago (marcador de posición)",
 };
 
 export default es;
