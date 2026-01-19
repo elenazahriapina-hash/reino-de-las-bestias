@@ -5,24 +5,40 @@ export type TestAnswer = {
     answer: string;
 };
 
-export type TestPayload = {
+export type ShortTestPayload = {
     name: string;
     lang: "ru" | "en" | "es" | "pt";
     gender?: string | null;
     answers: TestAnswer[];
 };
 
-const API_URL = "http://192.168.0.14:8000/analyze";
+export type FullTestPayload = ShortTestPayload & {
+    runId: string;
+    animal: string;
+    element: string;
+};
 
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.18:8000";
+
+export async function sendTestToBackend<T>(
+    endpoint: "short",
+    payload: ShortTestPayload
+): Promise<T>;
+export async function sendTestToBackend<T>(
+    endpoint: "full",
+    payload: FullTestPayload
+): Promise<T>;
 
 export async function sendTestToBackend<T>(
     endpoint: "short" | "full",
-    payload: TestPayload
+    payload: ShortTestPayload | FullTestPayload
 ): Promise<T> {
     let response: Response;
+    const url = `${BASE_URL}/analyze/${endpoint}`;
 
     try {
-        response = await fetch(`${API_URL}/${endpoint}`, {
+        console.log("API URL:", url);
+        response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),

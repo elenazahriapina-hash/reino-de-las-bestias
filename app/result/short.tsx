@@ -1,15 +1,15 @@
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
-import { useEffect, useState } from "react";
-import { useRouter, useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-import ru from "../../src/lang/ru";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
 
-import { styles } from "../../src/styles/startScreenStyles";
 import { sendTestToBackend } from "../../src/api/backend";
+import { styles } from "../../src/styles/startScreenStyles";
 import {
     getArchetypeImage,
     type AnimalCode,
@@ -24,6 +24,7 @@ type ShortResult = {
     element: ElementRu;
     genderForm: Gender;
     text: string;
+    runId: string;
 };
 
 type ShortResponse = {
@@ -83,6 +84,8 @@ export default function ShortResultScreen() {
                 // 🔑 СОХРАНЯЕМ ДЛЯ FULL
                 await AsyncStorage.setItem("result_animal", shortResult.animal);
                 await AsyncStorage.setItem("result_element", shortResult.element);
+
+                await AsyncStorage.setItem("runId", shortResult.runId);
 
                 setResult(shortResult);
 

@@ -1,22 +1,22 @@
 // app/result/full.tsx
 
-import {
-    View,
-    Text,
-    ScrollView,
-    ActivityIndicator,
-} from "react-native";
-import { useEffect, useState } from "react";
-import { useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import {
+    ActivityIndicator,
+    ScrollView,
+    Text,
+    View,
+} from "react-native";
 
-import ru from "../../src/lang/ru";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
 
-import { styles } from "../../src/styles/startScreenStyles";
 import { sendTestToBackend } from "../../src/api/backend";
+import { styles } from "../../src/styles/startScreenStyles";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
@@ -47,9 +47,12 @@ export default function FullResultScreen() {
 
                 const animal = await AsyncStorage.getItem("result_animal");
                 const element = await AsyncStorage.getItem("result_element");
+                const runId = await AsyncStorage.getItem("runId");
 
-                if (!animal || !element) {
-                    throw new Error("No archetype data");
+                if (!animal || !element || !runId) {
+                    setError(t.fullError);
+                    setLoading(false);
+                    return;
                 }
 
                 const keys = await AsyncStorage.getAllKeys();
@@ -65,6 +68,7 @@ export default function FullResultScreen() {
                     .sort((a, b) => a.questionId - b.questionId);
 
                 const payload = {
+                    runId,
                     name,
                     lang: (lang ?? "ru") as Lang,
                     gender,
@@ -72,6 +76,8 @@ export default function FullResultScreen() {
                     element,
                     answers,
                 };
+
+                console.log("runId present:", Boolean(runId));
 
                 const response = await sendTestToBackend<FullResponse>(
                     "full",
@@ -126,4 +132,3 @@ export default function FullResultScreen() {
         </ScrollView>
     );
 }
-
