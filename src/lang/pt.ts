@@ -9,15 +9,16 @@ const pt = {
     nameInfo: "Pode ser seu nome ou apelido. Vamos usar isso para te chamar. Depois você pode mudar no seu perfil.",
     namePlaceholder: "O seu nome",
 
-    finishTitle: "Teste concluído",
-    finishText: "Analisamos suas respostas para mostrar seu arquétipo.",
+    finishTitle: "Pronto",
+    finishText: "Você respondeu às perguntas.\nAgora vamos formar sua imagem — fera e elemento.\nIsso vai levar apenas alguns segundos.",
+    finishCta: "Ver resultado",
     getResult: "Ver resultado",
     getFull: "Obter análise completa",
 
     next: "Seguinte",
     questionWord: "Pergunta",
     finish: "Concluir",
-   
+
     error: "Ocorreu um erro",
     serverError: "Erro ao ligar ao servidor",
     noResult: "Não existem dados de resultado",

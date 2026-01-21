@@ -9,8 +9,9 @@ const es = {
     nameInfo: "Puede ser tu nombre o tu apodo. Lo vamos a usar para llamarte. Después podés cambiarlo en tu perfil.",
     namePlaceholder: "Su nombre",
 
-    finishTitle: "Test completado",
-    finishText: "Estamos analizando tus respuestas para revelar tu arquetipo.",
+    finishTitle: "Listo",
+    finishText: "Ya respondiste las preguntas.\nAhora vamos a formar tu imagen — bestia y elemento.\nVa a llevar solo unos segundos.",
+    finishCta: "Ver resultado",
     getResult: "Ver resultado",
     getFull: "Obtener análisis completo",
 

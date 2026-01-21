@@ -9,8 +9,9 @@ const en = {
     nameInfo: "This can be your name or nickname. We’ll use it to address you. You can change it later in your profile.",
     namePlaceholder: "Your name",
 
-    finishTitle: "Test completed",
-    finishText: "We are analyzing your answers to reveal your archetype.",
+    finishTitle: "All set",
+    finishText: "You’ve answered the questions.\nNow we’ll form your image — a beast and an element.\nThis will take a few seconds.",
+    finishCta: "View result",
     getResult: "Get result",
     getFull: "Get full analysis",
 

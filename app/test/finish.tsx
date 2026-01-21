@@ -1,13 +1,14 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import type { Href } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { useRouter, useLocalSearchParams } from "expo-router";
+import { Text, TouchableOpacity, View } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ru from "../../src/lang/ru";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
 
 import { styles } from "../../src/styles/startScreenStyles";
 
@@ -18,7 +19,8 @@ export default function FinishScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = lang ?? "ru";
+    const t = translations[resolvedLang];
 
     const [name, setName] = useState<string>("");
     const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -63,6 +65,10 @@ export default function FinishScreen() {
         return result;
     };
 
+    const resultHref: Href = {
+        pathname: "/result/loading",
+        params: { lang: resolvedLang },
+    };
 
     return (
         <View style={styles.container}>
@@ -80,14 +86,9 @@ export default function FinishScreen() {
                 <View style={styles.bottom}>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() =>
-                            router.push({
-                                pathname: "/result/short",
-                                params: { lang },
-                            })
-                        }
+                        onPress={() => router.push(resultHref)}
                     >
-                        <Text style={styles.buttonText}>{t.getResult}</Text>
+                        <Text style={styles.buttonText}>{t.finishCta}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
