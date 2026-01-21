@@ -8,6 +8,7 @@ const pt = {
     nameHint: "Escreva o seu nome ou alcunha",
     nameInfo: "Pode ser seu nome ou apelido. Vamos usar isso para te chamar. Depois você pode mudar no seu perfil.",
     namePlaceholder: "O seu nome",
+    ok: "OK",
 
     finishTitle: "Pronto",
     finishText: "Você respondeu às perguntas.\nAgora vamos formar sua imagem — fera e elemento.\nIsso vai levar apenas alguns segundos.",
@@ -60,6 +61,19 @@ const pt = {
     profileSoon: "Em breve você poderá entrar com Telegram ou Google.",
     back: "Voltar",
     profileName: "Nome",
+
+    elements: {
+        air: "Ar",
+        water: "Água",
+        fire: "Fogo",
+        earth: "Terra",
+    },
+
+    shareTemplate: "O meu arquétipo é {archetype} · {element}. E o teu?",
+    shareError: "Não foi possível partilhar o resultado",
+
+    paywallTitle: "Análise completa",
+    paywallSubtitle: "Ecrã de pagamento (stub)",
 
 };
 

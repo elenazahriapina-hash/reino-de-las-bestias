@@ -60,7 +60,7 @@ export default function NameScreen() {
                                 router.push(href);
                             }}
                         >
-                            <Text style={styles.buttonText}>OK</Text>
+                            <Text style={styles.buttonText}>{t.ok}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

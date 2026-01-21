@@ -1,4 +1,4 @@
-import { type Href, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import en from "../../src/lang/en";
@@ -13,15 +13,17 @@ type Lang = "ru" | "en" | "es" | "pt";
 export default function AfterShareScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
-    const currentLang = (lang ?? "ru") as Lang;
 
     const translations = { ru, en, es, pt };
+    const currentLang: Lang = (lang ?? "ru") as Lang;
     const t = translations[currentLang];
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{t.paywallTitle}</Text>
-            <Text style={styles.quote}>{t.getFull}</Text>
+            <View style={styles.center}>
+                <Text style={styles.title}>{t.afterShareTitle}</Text>
+                <Text style={styles.quote}>{t.afterShareText}</Text>
+            </View>
 
             <View style={styles.bottom}>
                 <TouchableOpacity
@@ -34,7 +36,7 @@ export default function AfterShareScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.getFull}</Text>
+                    <Text style={styles.buttonText}>{t.openFull}</Text>
                 </TouchableOpacity>
             </View>
         </View>

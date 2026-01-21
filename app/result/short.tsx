@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Asset } from "expo-asset";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
@@ -11,6 +11,7 @@ import ru from "../../src/lang/ru";
 import { sendTestToBackend } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
 import {
+    getAnimalRuName,
     getArchetypeImage,
     type AnimalCode,
     type ElementRu,
@@ -37,8 +38,8 @@ export default function ShortResultScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const resolvedLang = lang ?? "ru";
-    const t = translations[resolvedLang];
+    const currentLang: Lang = (lang ?? "ru") as Lang;
+    const t = translations[currentLang];
 
     const [loading, setLoading] = useState(true);
     const [result, setResult] = useState<ShortResult | null>(null);
@@ -94,7 +95,7 @@ export default function ShortResultScreen() {
 
                 const payload = {
                     name,
-                    lang: resolvedLang,
+                    lang: currentLang,
                     gender, // отправляем уже нормализованный gender
                     answers,
                 };
@@ -132,7 +133,64 @@ export default function ShortResultScreen() {
         };
 
         loadResult();
-    }, [lang]);
+    }, [currentLang]);
+
+    const elementKeyByRu: Record<ElementRu, "air" | "water" | "fire" | "earth"> = {
+        "Воздух": "air",
+        "Вода": "water",
+        "Огонь": "fire",
+        "Земля": "earth",
+    };
+
+    const archetypeName = result
+        ? currentLang === "ru"
+            ? getAnimalRuName(result.animal, result.genderForm)
+            : result.animal
+        : "";
+
+    const elementName = result
+        ? t.elements[elementKeyByRu[result.element]] ?? result.element
+        : "";
+
+    const appUrl = process.env.EXPO_PUBLIC_APP_URL?.trim();
+    const shareText = t.shareTemplate
+        .replace("{archetype}", archetypeName)
+        .replace("{element}", elementName);
+    const shareMessage = appUrl ? `${shareText}\n${appUrl}` : shareText;
+
+    const handleShare = async () => {
+        if (!result) return;
+        try {
+            let shareUrl: string | undefined;
+
+            if (image) {
+                try {
+                    const asset = Asset.fromModule(image);
+                    await asset.downloadAsync();
+                    shareUrl = asset.localUri ?? asset.uri;
+                } catch (assetError) {
+                    console.warn("Share asset load failed:", assetError);
+                }
+            }
+
+            await Share.share(
+                shareUrl
+                    ? {
+                        message: shareMessage,
+                        url: shareUrl,
+                    }
+                    : { message: shareMessage }
+            );
+
+            const href = {
+                pathname: "/result/after-share",
+                params: { lang: currentLang },
+            } as unknown as Href;
+            router.push(href);
+        } catch (shareError) {
+            console.error(t.shareError, shareError);
+        }
+    };
 
     if (loading) {
         return (
@@ -174,11 +232,24 @@ export default function ShortResultScreen() {
             )}
 
             <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress={() => router.push({
-                    pathname: "/result/full",
-                    params: { lang }
-                } as any)}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        const href = {
+                            pathname: "/paywall",
+                            params: { lang: currentLang },
+                        } as unknown as Href;
+                        router.push(href);
+                    }}
+                >
                     <Text style={styles.buttonText}>{t.getFull}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleShare}
+                >
+                    <Text style={styles.buttonText}>{t.share}</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>

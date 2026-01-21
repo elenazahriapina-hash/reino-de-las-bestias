@@ -1,15 +1,15 @@
-import { View, Text, TouchableOpacity, TextInput, Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from "react-native";
-import { useEffect, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
+import { useEffect, useState } from "react";
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
-import ru from "../../src/lang/ru";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
 
-import { styles } from "../../src/styles/startScreenStyles";
 import { questions } from "../../src/data/questions";
+import { styles } from "../../src/styles/startScreenStyles";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
@@ -21,7 +21,7 @@ export default function QuestionScreen() {
     }>();
 
     const currentStep = Number(step ?? 1);
-    const currentLang = (lang ?? "ru") as "ru" | "en" | "es" | "pt";
+    const currentLang: Lang = (lang ?? "ru") as Lang;
     const translations = { ru, en, es, pt };
     const t = translations[currentLang];
     const question = questions[currentStep - 1];
@@ -30,9 +30,13 @@ export default function QuestionScreen() {
 
     useEffect(() => {
         if (!question) {
-            router.replace("/test/finish");
+            const href = {
+                pathname: "/test/finish",
+                params: { lang: currentLang },
+            } as unknown as Href;
+            router.replace(href);
         }
-    }, [question]);
+    }, [currentLang, question, router]);
 
     if (!question) {
         return null;
@@ -45,13 +49,14 @@ export default function QuestionScreen() {
         // сохраняем ответ (пока просто по номеру вопроса)
         await AsyncStorage.setItem(`answer_${currentStep}`, answer);
 
-        router.push({
+        const href = {
             pathname: "/test/question",
             params: {
-                step: currentStep + 1,
+                step: String(currentStep + 1),
                 lang: currentLang,
             },
-        });
+        } as unknown as Href;
+        router.push(href);
     };
 
     return (

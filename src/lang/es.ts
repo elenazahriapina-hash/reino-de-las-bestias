@@ -8,6 +8,8 @@ const es = {
     nameHint: "Escriba su nombre o apodo",
     nameInfo: "Puede ser tu nombre o tu apodo. Lo vamos a usar para llamarte. Después podés cambiarlo en tu perfil.",
     namePlaceholder: "Su nombre",
+    ok: "OK",
+
 
     finishTitle: "Listo",
     finishText: "Ya respondiste las preguntas.\nAhora vamos a formar tu imagen — bestia y elemento.\nVa a llevar solo unos segundos.",
@@ -62,6 +64,19 @@ const es = {
     profileSoon: "Pronto vas a poder iniciar sesión con Telegram o Google.",
     back: "Volver",
     profileName: "Nombre",
+
+    elements: {
+        air: "Aire",
+        water: "Agua",
+        fire: "Fuego",
+        earth: "Tierra",
+    },
+
+    shareTemplate: "Mi arquetipo es {archetype} · {element}. ¿Y el tuyo?",
+    shareError: "No se pudo compartir el resultado",
+
+    paywallTitle: "Análisis completo",
+    paywallSubtitle: "Pantalla de pago (provisorio)",
 };
 
 export default es;

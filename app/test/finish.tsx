@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
@@ -18,7 +18,8 @@ export default function FinishScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const currentLang: Lang = (lang ?? "ru") as Lang;
+    const t = translations[currentLang];
 
     const [name, setName] = useState<string>("");
     const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -82,9 +83,9 @@ export default function FinishScreen() {
                         style={styles.button}
                         onPress={() =>
                             router.push({
-                                pathname: "/result/short",
-                                params: { lang },
-                            })
+                                pathname: "/result/loading",
+                                params: { lang: currentLang },
+                            } as unknown as Href)
                         }
                     >
                         <Text style={styles.buttonText}>{t.getResult}</Text>

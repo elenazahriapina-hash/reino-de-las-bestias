@@ -3,6 +3,7 @@ const ru = {
   quote: "Верящий видит знак.\nРациональный видит модель.\nИ оба видят себя.",
   start: "НАЧАТЬ",
   disclaimer: "Не тест. Не диагноз. Не игра",
+  ok: "ОК",
 
   nameTitle: "Как к тебе обращаться?",
   nameHint: "Напиши своё имя или никнейм",
@@ -61,6 +62,20 @@ const ru = {
   profileSoon: "Скоро здесь будет вход через Telegram или Google.",
   back: "Назад",
   profileName: "Имя",
+
+  elements: {
+    air: "Воздух",
+    water: "Вода",
+    fire: "Огонь",
+    earth: "Земля",
+  },
+
+  shareTemplate: "Мой архетип — {archetype} · {element}, а твой какой?",
+  shareError: "Не удалось поделиться результатом",
+
+  paywallTitle: "Полный разбор",
+  paywallSubtitle: "Экран оплаты (заглушка)",
+
 
 };
 

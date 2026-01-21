@@ -8,6 +8,7 @@ const en = {
     nameHint: "Write your name or nickname",
     nameInfo: "This can be your name or nickname. We’ll use it to address you. You can change it later in your profile.",
     namePlaceholder: "Your name",
+    ok: "OK",
 
     finishTitle: "All set",
     finishText: "You’ve answered the questions.\nNow we’ll form your image — a beast and an element.\nThis will take a few seconds.",
@@ -23,10 +24,10 @@ const en = {
     backHome: "Back to home",
     share: "Share",
     sharePrompt: "Curious who you are?",
-    openFull: "Unlock full breakdown",
     later: "Later",
     afterShareTitle: "Want to go deeper?",
     afterShareText: "If this resonated, the full version reveals more sides.",
+    openFull: "Open full breakdown",
 
     next: "Next",
     questionWord: "Question",
@@ -60,6 +61,19 @@ const en = {
     profileSoon: "Soon you’ll be able to sign in with Telegram or Google.",
     back: "Back",
     profileName: "Name",
+
+    elements: {
+        air: "Air",
+        water: "Water",
+        fire: "Fire",
+        earth: "Earth",
+    },
+
+    shareTemplate: "My archetype is {archetype} · {element}. What about yours?",
+    shareError: "Could not share the result",
+
+    paywallTitle: "Full breakdown",
+    paywallSubtitle: "Payment screen (stub)",
 
 };
 

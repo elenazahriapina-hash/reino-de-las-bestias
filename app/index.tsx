@@ -17,23 +17,23 @@ const translations = { ru, en, es, pt };
 
 export default function StartScreen() {
   const router = useRouter();
-  const [lang, setLang] = useState<Lang>("ru");
+  const [currentLang, setCurrentLang] = useState<Lang>("ru");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const t = translations[lang];
+  const t = translations[currentLang];
 
   // 🔹 загрузка сохранённого языка
   useEffect(() => {
     AsyncStorage.getItem("lang").then((saved) => {
       if (saved === "ru" || saved === "en" || saved === "es" || saved === "pt") {
-        setLang(saved);
+        setCurrentLang(saved);
       }
     });
   }, []);
 
   // 🔹 сохранение языка
   const changeLang = async (l: Lang) => {
-    setLang(l);
+    setCurrentLang(l);
     setMenuOpen(false);
     await AsyncStorage.setItem("lang", l);
   };
@@ -46,7 +46,7 @@ export default function StartScreen() {
       {/* 🌍 язык справа сверху */}
       <View style={styles.langWrapper}>
         <Pressable onPress={() => setMenuOpen(!menuOpen)}>
-          <Text style={styles.langCurrent}>{lang.toUpperCase()}</Text>
+          <Text style={styles.langCurrent}>{currentLang.toUpperCase()}</Text>
         </Pressable>
 
         {menuOpen && (
@@ -77,7 +77,13 @@ export default function StartScreen() {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push(introHref)}
+          onPress={() => {
+            const href = {
+              pathname: "/name",
+              params: { lang: currentLang },
+            } as unknown as Href;
+            router.push(href);
+          }}
         >
           <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>

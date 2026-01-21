@@ -31,7 +31,8 @@ export default function FullResultScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const currentLang: Lang = (lang ?? "ru") as Lang;
+    const t = translations[currentLang];
 
     const [loading, setLoading] = useState(true);
     const [text, setText] = useState("");
@@ -70,7 +71,7 @@ export default function FullResultScreen() {
                 const payload = {
                     runId,
                     name,
-                    lang: (lang ?? "ru") as Lang,
+                    lang: currentLang,
                     gender,
                     animal,
                     element,
