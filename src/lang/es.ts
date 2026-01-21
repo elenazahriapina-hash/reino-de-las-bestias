@@ -16,9 +16,7 @@ const es = {
     next: "Siguiente",
     questionWord: "Pregunta",
     finish: "Finalizar",
-    back1: "Atrás",
-
-
+    
     // 🔴 ошибки
     error: "Ocurrió un error",
     serverError: "Error al conectar con el servidor",
@@ -45,6 +43,10 @@ const es = {
     introB3:
         "🧭 un perfil psicológico breve\n🔍 una conclusión clara: cómo actuás, pensás y reaccionás\n\n📌 No hay respuestas correctas o incorrectas.\n📌 Respondé como lo sentís, no como “deberías”.\n\n¿Lista/o?\nArranquemos.",
     introCta: "Arranquemos",
+    profileTitle: "Perfil",
+    profileSoon: "Pronto vas a poder iniciar sesión con Telegram o Google.",
+    back: "Volver",
+    profileName: "Nombre",
 };
 
 export default es;

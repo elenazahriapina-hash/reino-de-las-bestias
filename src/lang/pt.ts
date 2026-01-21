@@ -16,9 +16,7 @@ const pt = {
     next: "Seguinte",
     questionWord: "Pergunta",
     finish: "Concluir",
-    back1: "Voltar",
-
-
+   
     error: "Ocorreu um erro",
     serverError: "Erro ao ligar ao servidor",
     noResult: "Não existem dados de resultado",
@@ -43,6 +41,10 @@ const pt = {
     introB3:
         "🧭 um perfil psicológico curto\n🔍 uma conclusão clara: como você age, pensa e reage\n\n📌 Não há respostas certas ou erradas.\n📌 Responda como você sente, não como “deveria”.\n\nPronto(a)?\nVamos começar.",
     introCta: "Vamos começar",
+    profileTitle: "Perfil",
+    profileSoon: "Em breve você poderá entrar com Telegram ou Google.",
+    back: "Voltar",
+    profileName: "Nome",
 
 };
 

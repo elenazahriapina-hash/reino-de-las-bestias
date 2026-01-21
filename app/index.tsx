@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRouter } from "expo-router";
+import { type Href, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, Text, TouchableOpacity, View, } from "react-native";
 
@@ -38,6 +38,9 @@ export default function StartScreen() {
     await AsyncStorage.setItem("lang", l);
   };
 
+  const introHref = { pathname: "/intro", params: { lang } } as unknown as Href;
+  const profileHref = { pathname: "/profile", params: { lang } } as unknown as Href;
+
   return (
     <View style={styles.container}>
       {/* 🌍 язык справа сверху */}
@@ -74,14 +77,14 @@ export default function StartScreen() {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push(`/intro?lang=${lang}`)}
+          onPress={() => router.push(introHref)}
         >
           <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push(`/profile?lang=${lang}`)}
+          onPress={() => router.push(profileHref)}
         >
           <Text style={styles.buttonText}>{t.profileEnter}</Text>
         </TouchableOpacity>

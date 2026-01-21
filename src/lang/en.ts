@@ -16,8 +16,6 @@ const en = {
     next: "Next",
     questionWord: "Question",
     finish: "Finish",
-    back1: "Back",
-
 
     error: "An error occurred",
     serverError: "Error connecting to the server",
@@ -43,6 +41,10 @@ const en = {
     introB3:
         "🧭 a short psychological profile\n🔍 a clear takeaway: how you act, think, and react\n\n📌 There are no right or wrong answers.\n📌 Answer how you feel, not how you “should”.\n\nReady?\nLet’s begin.",
     introCta: "Let’s begin",
+    profileTitle: "Profile",
+    profileSoon: "Soon you’ll be able to sign in with Telegram or Google.",
+    back: "Back",
+    profileName: "Name",
 
 };
 
