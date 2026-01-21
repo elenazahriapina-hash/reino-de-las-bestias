@@ -1,12 +1,12 @@
-import { View, Text, TouchableOpacity, Pressable, } from "react-native";
-import { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { Pressable, Text, TouchableOpacity, View, } from "react-native";
 
-import ru from "../src/lang/ru";
 import en from "../src/lang/en";
 import es from "../src/lang/es";
 import pt from "../src/lang/pt";
+import ru from "../src/lang/ru";
 
 import { styles } from "../src/styles/startScreenStyles";
 
@@ -74,9 +74,16 @@ export default function StartScreen() {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push({ pathname: "/name", params: { lang } })}
+          onPress={() => router.push({ pathname: "/intro", params: { lang } })}
         >
           <Text style={styles.buttonText}>{t.start}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push({ pathname: "/profile", params: { lang } })}
+        >
+          <Text style={styles.buttonText}>Войти в профиль</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>{t.disclaimer}</Text>
