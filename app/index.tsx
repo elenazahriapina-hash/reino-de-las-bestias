@@ -1,3 +1,5 @@
+// MARKER: REAL ROOT reino-bestias 2026-01-21
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { type Href, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
