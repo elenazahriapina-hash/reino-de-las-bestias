@@ -16,6 +16,8 @@ const pt = {
     next: "Seguinte",
     questionWord: "Pergunta",
     finish: "Concluir",
+    back1: "Voltar",
+
 
     error: "Ocorreu um erro",
     serverError: "Erro ao ligar ao servidor",
@@ -29,6 +31,18 @@ const pt = {
     values: "Valores",
     conclusion: "Conclusão",
 
+    profileEnter: "Entrar no perfil",
+    introTitle: "🧠 Batalha das feras",
+    introP1: "Descubra seu arquétipo. Veja a si mesmo de fora.",
+    introP2:
+        "Cada pessoa mistura instinto, estratégia e um elemento. Nós traduzimos isso em imagens claras — 24 feras × 4 elementos.",
+    introP3:
+        "Este teste não é sobre “rótulos”. É sobre seus pontos fortes, seu estilo de decisão e seu ritmo interno.\n\nO que você vai receber:",
+    introB1: "🐾 seu arquétipo de fera",
+    introB2: "🌍 seu elemento dominante",
+    introB3:
+        "🧭 um perfil psicológico curto\n🔍 uma conclusão clara: como você age, pensa e reage\n\n📌 Não há respostas certas ou erradas.\n📌 Responda como você sente, não como “deveria”.\n\nPronto(a)?\nVamos começar.",
+    introCta: "Vamos começar",
 
 };
 

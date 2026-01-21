@@ -74,16 +74,16 @@ export default function StartScreen() {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push({ pathname: "/intro", params: { lang } })}
+          onPress={() => router.push(`/intro?lang=${lang}`)}
         >
           <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push({ pathname: "/profile", params: { lang } })}
+          onPress={() => router.push(`/profile?lang=${lang}`)}
         >
-          <Text style={styles.buttonText}>Войти в профиль</Text>
+          <Text style={styles.buttonText}>{t.profileEnter}</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>{t.disclaimer}</Text>

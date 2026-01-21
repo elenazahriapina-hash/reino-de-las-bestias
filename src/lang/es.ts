@@ -16,6 +16,8 @@ const es = {
     next: "Siguiente",
     questionWord: "Pregunta",
     finish: "Finalizar",
+    back1: "Atrás",
+
 
     // 🔴 ошибки
     error: "Ocurrió un error",
@@ -30,6 +32,19 @@ const es = {
     element: "Elemento",
     values: "Valores",
     conclusion: "Conclusión",
+
+    profileEnter: "Entrar al perfil",
+    introTitle: "🧠 Batalla de bestias",
+    introP1: "Descubrí tu arquetipo. Mirate desde afuera.",
+    introP2:
+        "Cada persona combina instinto, estrategia y un elemento. Lo llevamos a un lenguaje de imágenes: 24 bestias × 4 elementos.",
+    introP3:
+        "Este test no es para “ponerte una etiqueta”. Es sobre tus fortalezas, tu estilo de decisión y tu ritmo interno.\n\nQué vas a obtener:",
+    introB1: "🐾 tu arquetipo de bestia",
+    introB2: "🌍 tu elemento dominante",
+    introB3:
+        "🧭 un perfil psicológico breve\n🔍 una conclusión clara: cómo actuás, pensás y reaccionás\n\n📌 No hay respuestas correctas o incorrectas.\n📌 Respondé como lo sentís, no como “deberías”.\n\n¿Lista/o?\nArranquemos.",
+    introCta: "Arranquemos",
 };
 
 export default es;

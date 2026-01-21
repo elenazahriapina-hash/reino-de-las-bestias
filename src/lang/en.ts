@@ -16,6 +16,8 @@ const en = {
     next: "Next",
     questionWord: "Question",
     finish: "Finish",
+    back1: "Back",
+
 
     error: "An error occurred",
     serverError: "Error connecting to the server",
@@ -29,6 +31,18 @@ const en = {
     values: "Values",
     conclusion: "Conclusion",
 
+    profileEnter: "Open profile",
+    introTitle: "🧠 Battle of Beasts",
+    introP1: "Discover your archetype. See yourself from the outside.",
+    introP2:
+        "Every person blends instinct, strategy, and an element. We translated it into clear imagery — 24 beasts × 4 elements.",
+    introP3:
+        "This isn’t about “labels”. It’s about your strengths, your decision style, and your inner rhythm.\n\nWhat you’ll get:",
+    introB1: "🐾 your beast archetype",
+    introB2: "🌍 your dominant element",
+    introB3:
+        "🧭 a short psychological profile\n🔍 a clear takeaway: how you act, think, and react\n\n📌 There are no right or wrong answers.\n📌 Answer how you feel, not how you “should”.\n\nReady?\nLet’s begin.",
+    introCta: "Let’s begin",
 
 };
 
