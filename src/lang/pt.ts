@@ -6,6 +6,7 @@ const pt = {
 
     nameTitle: "Como devemos dirigir-nos a si?",
     nameHint: "Escreva o seu nome ou alcunha",
+    nameInfo: "Pode ser seu nome ou apelido. Vamos usar isso para te chamar. Depois você pode mudar no seu perfil.",
     namePlaceholder: "O seu nome",
 
     finishTitle: "Teste concluído",

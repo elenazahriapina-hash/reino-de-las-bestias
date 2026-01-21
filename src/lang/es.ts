@@ -6,6 +6,7 @@ const es = {
 
     nameTitle: "Cómo deberíamos dirigirnos a usted",
     nameHint: "Escriba su nombre o apodo",
+    nameInfo: "Puede ser tu nombre o tu apodo. Lo vamos a usar para llamarte. Después podés cambiarlo en tu perfil.",
     namePlaceholder: "Su nombre",
 
     finishTitle: "Test completado",
@@ -16,7 +17,7 @@ const es = {
     next: "Siguiente",
     questionWord: "Pregunta",
     finish: "Finalizar",
-    
+
     // 🔴 ошибки
     error: "Ocurrió un error",
     serverError: "Error al conectar con el servidor",

@@ -6,6 +6,7 @@ const en = {
 
     nameTitle: "How should we address you?",
     nameHint: "Write your name or nickname",
+    nameInfo: "This can be your name or nickname. We’ll use it to address you. You can change it later in your profile.",
     namePlaceholder: "Your name",
 
     finishTitle: "Test completed",
