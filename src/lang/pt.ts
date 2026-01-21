@@ -14,6 +14,10 @@ const pt = {
     finishCta: "Ver resultado",
     getResult: "Ver resultado",
     getFull: "Obter análise completa",
+    loadingTitle: "Gerando seu resultado",
+    loadingText: "Isso vai levar alguns segundos.",
+    retry: "Tentar novamente",
+    backHome: "Voltar ao início",
 
     next: "Seguinte",
     questionWord: "Pergunta",

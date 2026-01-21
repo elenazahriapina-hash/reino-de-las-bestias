@@ -14,6 +14,10 @@ const en = {
     finishCta: "View result",
     getResult: "Get result",
     getFull: "Get full analysis",
+    loadingTitle: "Creating your result",
+    loadingText: "This will take a few seconds.",
+    retry: "Try again",
+    backHome: "Back to home",
 
     next: "Next",
     questionWord: "Question",

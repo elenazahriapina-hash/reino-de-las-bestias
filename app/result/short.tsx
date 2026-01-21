@@ -37,7 +37,8 @@ export default function ShortResultScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const t = translations[lang ?? "ru"];
+    const resolvedLang = lang ?? "ru";
+    const t = translations[resolvedLang];
 
     const [loading, setLoading] = useState(true);
     const [result, setResult] = useState<ShortResult | null>(null);
@@ -48,6 +49,29 @@ export default function ShortResultScreen() {
         const loadResult = async () => {
             try {
                 setError(null);
+
+                const cached = await AsyncStorage.getItem("shortResult");
+                if (cached) {
+                    try {
+                        const cachedResult = JSON.parse(cached) as ShortResult;
+                        setResult(cachedResult);
+                        await AsyncStorage.setItem("result_animal", cachedResult.animal);
+                        await AsyncStorage.setItem("result_element", cachedResult.element);
+                        await AsyncStorage.setItem("runId", cachedResult.runId);
+                        await AsyncStorage.setItem("shortResult", JSON.stringify(cachedResult));
+                        setImage(
+                            getArchetypeImage({
+                                animal: cachedResult.animal,
+                                element: cachedResult.element,
+                                gender: cachedResult.genderForm,
+                            })
+                        );
+                        setLoading(false);
+                        return;
+                    } catch (parseError) {
+                        console.warn("Failed to parse cached short result", parseError);
+                    }
+                }
 
                 const name = (await AsyncStorage.getItem("userName")) ?? "";
                 const genderRaw = await AsyncStorage.getItem("gender");
@@ -70,7 +94,7 @@ export default function ShortResultScreen() {
 
                 const payload = {
                     name,
-                    lang: (lang ?? "ru") as Lang,
+                    lang: resolvedLang,
                     gender, // отправляем уже нормализованный gender
                     answers,
                 };
@@ -80,6 +104,8 @@ export default function ShortResultScreen() {
                     payload
                 );
                 const shortResult = response.result;
+
+                await AsyncStorage.setItem("shortResult", JSON.stringify(shortResult));
 
                 // 🔑 СОХРАНЯЕМ ДЛЯ FULL
                 await AsyncStorage.setItem("result_animal", shortResult.animal);

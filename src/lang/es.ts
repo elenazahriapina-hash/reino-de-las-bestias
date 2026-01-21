@@ -14,6 +14,10 @@ const es = {
     finishCta: "Ver resultado",
     getResult: "Ver resultado",
     getFull: "Obtener análisis completo",
+    loadingTitle: "Generando tu resultado",
+    loadingText: "Va a llevar unos segundos.",
+    retry: "Reintentar",
+    backHome: "Volver al inicio",
 
     next: "Siguiente",
     questionWord: "Pregunta",
