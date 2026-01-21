@@ -21,6 +21,12 @@ const en = {
     retry: "Try again",
     cancel: "Back",
     backHome: "Back to home",
+    share: "Share",
+    sharePrompt: "Curious who you are?",
+    openFull: "Unlock full breakdown",
+    later: "Later",
+    afterShareTitle: "Want to go deeper?",
+    afterShareText: "If this resonated, the full version reveals more sides.",
 
     next: "Next",
     questionWord: "Question",

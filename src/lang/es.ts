@@ -21,6 +21,12 @@ const es = {
     retry: "Reintentar",
     cancel: "Volver",
     backHome: "Volver al inicio",
+    share: "Compartir",
+    sharePrompt: "¿Y vos, quién sos?",
+    openFull: "Abrir análisis completo",
+    later: "Más tarde",
+    afterShareTitle: "¿Querés ir más profundo?",
+    afterShareText: "Si te hizo sentido, la versión completa muestra más facetas.",
 
     next: "Siguiente",
     questionWord: "Pregunta",

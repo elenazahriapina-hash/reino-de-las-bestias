@@ -21,6 +21,12 @@ const pt = {
     retry: "Tentar novamente",
     cancel: "Voltar",
     backHome: "Voltar ao início",
+    share: "Compartilhar",
+    sharePrompt: "Curioso(a) para saber o seu?",
+    openFull: "Abrir análise completa",
+    later: "Depois",
+    afterShareTitle: "Quer ir mais fundo?",
+    afterShareText: "Se isso bateu com você, a versão completa mostra mais lados.",
 
     next: "Seguinte",
     questionWord: "Pergunta",

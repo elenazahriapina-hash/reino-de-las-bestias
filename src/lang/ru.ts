@@ -21,6 +21,13 @@ const ru = {
   retry: "Повторить",
   cancel: "Назад",
   backHome: "На главный экран",
+  share: "Поделиться",
+  sharePrompt: "Интересно, кто ты?",
+  openFull: "Открыть полный разбор",
+  later: "Позже",
+  afterShareTitle: "Хочешь глубже?",
+  afterShareText: "Если откликнулось — полное описание открывает больше граней.",
+
 
   next: "Далее",
   questionWord: "Вопрос",
