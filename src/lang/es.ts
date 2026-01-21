@@ -16,7 +16,10 @@ const es = {
     getFull: "Obtener análisis completo",
     loadingTitle: "Generando tu resultado",
     loadingText: "Va a llevar unos segundos.",
+    loadingFullTitle: "Generando el análisis completo",
+    loadingFullText: "Puede tardar un poco más.",
     retry: "Reintentar",
+    cancel: "Volver",
     backHome: "Volver al inicio",
 
     next: "Siguiente",

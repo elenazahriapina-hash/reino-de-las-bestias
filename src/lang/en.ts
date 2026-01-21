@@ -16,7 +16,10 @@ const en = {
     getFull: "Get full analysis",
     loadingTitle: "Creating your result",
     loadingText: "This will take a few seconds.",
+    loadingFullTitle: "Creating the full breakdown",
+    loadingFullText: "This may take a little longer.",
     retry: "Try again",
+    cancel: "Back",
     backHome: "Back to home",
 
     next: "Next",

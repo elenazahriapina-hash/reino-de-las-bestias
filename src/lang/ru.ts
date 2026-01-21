@@ -16,7 +16,10 @@ const ru = {
   getFull: "Получить полный разбор",
   loadingTitle: "Формируем результат",
   loadingText: "Это займёт несколько секунд.",
+  loadingFullTitle: "Формируем полный разбор",
+  loadingFullText: "Это займёт немного больше времени.",
   retry: "Повторить",
+  cancel: "Назад",
   backHome: "На главный экран",
 
   next: "Далее",
