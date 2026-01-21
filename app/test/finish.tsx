@@ -1,4 +1,3 @@
-import type { Href } from "expo-router";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -19,8 +18,7 @@ export default function FinishScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const resolvedLang = lang ?? "ru";
-    const t = translations[resolvedLang];
+    const t = translations[lang ?? "ru"];
 
     const [name, setName] = useState<string>("");
     const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -65,10 +63,6 @@ export default function FinishScreen() {
         return result;
     };
 
-    const resultHref: Href = {
-        pathname: "/result/loading",
-        params: { lang: resolvedLang },
-    };
 
     return (
         <View style={styles.container}>
@@ -86,9 +80,14 @@ export default function FinishScreen() {
                 <View style={styles.bottom}>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => router.push(resultHref)}
+                        onPress={() =>
+                            router.push({
+                                pathname: "/result/short",
+                                params: { lang },
+                            })
+                        }
                     >
-                        <Text style={styles.buttonText}>{t.finishCta}</Text>
+                        <Text style={styles.buttonText}>{t.getResult}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

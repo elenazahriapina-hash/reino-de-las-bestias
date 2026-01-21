@@ -1,5 +1,4 @@
-import type { Href } from "expo-router";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { type Href, useLocalSearchParams, useRouter } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import en from "../../src/lang/en";
@@ -14,32 +13,28 @@ type Lang = "ru" | "en" | "es" | "pt";
 export default function AfterShareScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
+    const currentLang = (lang ?? "ru") as Lang;
 
     const translations = { ru, en, es, pt };
-    const resolvedLang = lang ?? "ru";
-    const t = translations[resolvedLang];
-
-    const paywallHref: Href = {
-        pathname: "/paywall",
-        params: { lang: resolvedLang },
-    };
-
-    const homeHref: Href = {
-        pathname: "/",
-    };
+    const t = translations[currentLang];
 
     return (
         <View style={styles.container}>
-            <View style={styles.center}>
-                <Text style={styles.title}>{t.afterShareTitle}</Text>
-                <Text style={styles.quote}>{t.afterShareText}</Text>
-            </View>
+            <Text style={styles.title}>{t.paywallTitle}</Text>
+            <Text style={styles.quote}>{t.getFull}</Text>
+
             <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(paywallHref)}>
-                    <Text style={styles.buttonText}>{t.openFull}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(homeHref)}>
-                    <Text style={styles.buttonText}>{t.later}</Text>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        const href = {
+                            pathname: "/paywall",
+                            params: { lang: currentLang },
+                        } as unknown as Href;
+                        router.push(href);
+                    }}
+                >
+                    <Text style={styles.buttonText}>{t.getFull}</Text>
                 </TouchableOpacity>
             </View>
         </View>

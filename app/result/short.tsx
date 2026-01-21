@@ -1,8 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import type { Href } from "expo-router";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, Share, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
@@ -106,7 +105,6 @@ export default function ShortResultScreen() {
                 );
                 const shortResult = response.result;
 
-                await AsyncStorage.setItem("shortResult", JSON.stringify(shortResult));
 
                 // 🔑 СОХРАНЯЕМ ДЛЯ FULL
                 await AsyncStorage.setItem("result_animal", shortResult.animal);
@@ -135,31 +133,6 @@ export default function ShortResultScreen() {
 
         loadResult();
     }, [lang]);
-
-    const shareResult = async () => {
-        if (!result) {
-            return;
-        }
-
-        const firstLine = result.text.split("\n")[0]?.trim();
-        const headline = firstLine || `${t.archetype}...`;
-        const appUrl = process.env.EXPO_PUBLIC_APP_URL;
-        const message = [headline, t.sharePrompt, appUrl].filter(Boolean).join("\n");
-
-        const response = await Share.share({ message });
-        if (response.action === Share.sharedAction) {
-            const afterShareHref: Href = {
-                pathname: "/result/after-share",
-                params: { lang: resolvedLang },
-            };
-            router.push(afterShareHref);
-        }
-    };
-
-    const fullHref: Href = {
-        pathname: "/result/full",
-        params: { lang: resolvedLang },
-    };
 
     if (loading) {
         return (
@@ -201,10 +174,10 @@ export default function ShortResultScreen() {
             )}
 
             <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress={shareResult}>
-                    <Text style={styles.buttonText}>{t.share}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(fullHref)}>
+                <TouchableOpacity style={styles.button} onPress={() => router.push({
+                    pathname: "/result/full",
+                    params: { lang }
+                } as any)}>
                     <Text style={styles.buttonText}>{t.getFull}</Text>
                 </TouchableOpacity>
             </View>
