@@ -47,7 +47,7 @@ const es = {
     conclusion: "Conclusión",
 
     profileEnter: "Entrar al perfil",
-    introTitle: "🧠 Batalla de bestias",
+    introTitle: "🧠 Reino de las Bestias",
     introP1: "Descubrí tu arquetipo. Mirate desde afuera.",
     introP2:
         "Cada persona combina instinto, estrategia y un elemento. Lo llevamos a un lenguaje de imágenes: 24 bestias × 4 elementos.",

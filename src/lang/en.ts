@@ -45,7 +45,7 @@ const en = {
     conclusion: "Conclusion",
 
     profileEnter: "Open profile",
-    introTitle: "🧠 Battle of Beasts",
+    introTitle: "🧠 Beast Realm",
     introP1: "Discover your archetype. See yourself from the outside.",
     introP2:
         "Every person blends instinct, strategy, and an element. We translated it into clear imagery — 24 beasts × 4 elements.",
