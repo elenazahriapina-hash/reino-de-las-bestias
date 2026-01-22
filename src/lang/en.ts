@@ -4,9 +4,8 @@ const en = {
     start: "START",
     disclaimer: "Not a test. Not a diagnosis. Not a game.",
 
-    nameTitle: "How should we address you?",
-    nameHint: "Write your name or nickname",
-    nameInfo: "This can be your name or nickname. We’ll use it to address you. You can change it later in your profile.",
+    nameTitle: "How should we call you?",
+    nameHint: "Enter a name or nickname — we’ll use it to address you. You can change it later in your profile.",
     namePlaceholder: "Your name",
     ok: "OK",
 

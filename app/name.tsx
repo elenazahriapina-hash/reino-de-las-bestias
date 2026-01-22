@@ -31,7 +31,6 @@ export default function NameScreen() {
                     <View style={styles.content}>
                         <Text style={styles.title}>{t.nameTitle}</Text>
                         <Text style={styles.subtitle}>{t.nameHint}</Text>
-                        <Text style={styles.subtitle}>{t.nameInfo}</Text>
 
                         <TextInput
                             style={styles.input}

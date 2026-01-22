@@ -4,10 +4,9 @@ const es = {
     start: "COMENZAR",
     disclaimer: "No es un test. No es un diagnóstico. No es un juego.",
 
-    nameTitle: "Cómo deberíamos dirigirnos a usted",
-    nameHint: "Escriba su nombre o apodo",
-    nameInfo: "Puede ser tu nombre o tu apodo. Lo vamos a usar para llamarte. Después podés cambiarlo en tu perfil.",
-    namePlaceholder: "Su nombre",
+    nameTitle: "¿Cómo te llamamos?",
+    nameHint: "Escribí tu nombre o apodo — así te vamos a llamar. Después podés cambiarlo en tu perfil.",
+    namePlaceholder: "Tu nombre",
     ok: "OK",
 
 
