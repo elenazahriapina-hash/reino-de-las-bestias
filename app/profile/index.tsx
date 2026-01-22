@@ -1,12 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ru from "../../src/lang/ru";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
 import { styles as startScreenStyles } from "../../src/styles/startScreenStyles";
 
 type Lang = "ru" | "en" | "es" | "pt";
@@ -15,9 +15,8 @@ const translations = { ru, en, es, pt };
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { lang } = useLocalSearchParams<{ lang?: string }>();
-  const currentLang: Lang =
-    lang === "ru" || lang === "en" || lang === "es" || lang === "pt" ? lang : "ru";
+  const { lang } = useLocalSearchParams<{ lang?: Lang }>();
+  const currentLang: Lang = (lang ?? "ru") as Lang;
   const t = translations[currentLang];
   const [name, setName] = useState<string | null>(null);
 

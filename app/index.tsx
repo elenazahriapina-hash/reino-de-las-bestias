@@ -40,8 +40,8 @@ export default function StartScreen() {
     await AsyncStorage.setItem("lang", l);
   };
 
-  const introHref = { pathname: "/intro", params: { lang } } as unknown as Href;
-  const profileHref = { pathname: "/profile", params: { lang } } as unknown as Href;
+  const introHref = { pathname: "/intro", params: { lang: currentLang } } as unknown as Href;
+  const profileHref = { pathname: "/profile", params: { lang: currentLang } } as unknown as Href;
 
   return (
     <View style={styles.container}>
@@ -80,11 +80,7 @@ export default function StartScreen() {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            const href = {
-              pathname: "/name",
-              params: { lang: currentLang },
-            } as unknown as Href;
-            router.push(href);
+            router.push(introHref);
           }}
         >
           <Text style={styles.buttonText}>{t.start}</Text>

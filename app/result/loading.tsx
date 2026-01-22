@@ -33,8 +33,8 @@ export default function ResultLoadingScreen() {
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
-    const resolvedLang = lang ?? "ru";
-    const t = translations[resolvedLang];
+    const currentLang: Lang = (lang ?? "ru") as Lang;
+    const t = translations[currentLang];
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -63,7 +63,7 @@ export default function ResultLoadingScreen() {
 
             const payload = {
                 name,
-                lang: resolvedLang,
+                lang: currentLang,
                 gender,
                 answers,
             };
@@ -78,7 +78,7 @@ export default function ResultLoadingScreen() {
 
             const nextHref: Href = {
                 pathname: "/result/short",
-                params: { lang: resolvedLang },
+                params: { lang: currentLang },
             };
             router.push(nextHref);
         } catch (e: any) {
@@ -95,6 +95,7 @@ export default function ResultLoadingScreen() {
 
     const homeHref: Href = {
         pathname: "/",
+        params: { lang: currentLang },
     };
 
     return (

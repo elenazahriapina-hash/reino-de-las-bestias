@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import en from "../src/lang/en";
@@ -13,9 +13,8 @@ const translations = { ru, en, es, pt };
 
 export default function IntroScreen() {
     const router = useRouter();
-    const { lang } = useLocalSearchParams<{ lang?: string }>();
-    const currentLang: Lang =
-        lang === "ru" || lang === "en" || lang === "es" || lang === "pt" ? lang : "ru";
+    const { lang } = useLocalSearchParams<{ lang?: Lang }>();
+    const currentLang: Lang = (lang ?? "ru") as Lang;
     const t = translations[currentLang];
 
     return (
@@ -34,7 +33,13 @@ export default function IntroScreen() {
                 <View style={introStyles.buttonWrapper}>
                     <TouchableOpacity
                         style={startScreenStyles.button}
-                        onPress={() => router.push(`/name?lang=${currentLang}`)}
+                        onPress={() => {
+                            const href = {
+                                pathname: "/name",
+                                params: { lang: currentLang },
+                            } as unknown as Href;
+                            router.push(href);
+                        }}
                     >
                         <Text style={startScreenStyles.buttonText}>{t.introCta}</Text>
                     </TouchableOpacity>

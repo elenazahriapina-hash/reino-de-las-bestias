@@ -14,8 +14,7 @@ type Lang = "ru" | "en" | "es" | "pt";
 export default function NameScreen() {
     const router = useRouter(); // ✅ внутри компонента
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
-    const currentLang: Lang =
-        lang === "ru" || lang === "en" || lang === "es" || lang === "pt" ? lang : "ru";
+    const currentLang: Lang = (lang ?? "ru") as Lang;
 
     const translations = { ru, en, es, pt };
     const t = translations[currentLang];
