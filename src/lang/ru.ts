@@ -86,6 +86,9 @@ const ru = {
   shortVersion: "Краткая версия",
   fullVersion: "Полная версия",
   noSavedResult: "Пока нет сохранённого результата.",
+  updating: "Обновляем краткий результат...",
+  updated: "Обновлено.",
+  updateError: "Не удалось обновить результат.",
 
   elements: {
     air: "Воздух",

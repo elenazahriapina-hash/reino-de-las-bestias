@@ -51,7 +51,9 @@ export default function ShortResultScreen() {
             try {
                 setError(null);
 
-                const cached = await AsyncStorage.getItem("shortResult");
+                const cached =
+                    (await AsyncStorage.getItem("lastShortResult")) ??
+                    (await AsyncStorage.getItem("shortResult"));
                 if (cached) {
                     try {
                         const cachedResult = JSON.parse(cached) as ShortResult;
@@ -114,6 +116,7 @@ export default function ShortResultScreen() {
                 await AsyncStorage.setItem("result_element", shortResult.element);
 
                 await AsyncStorage.setItem("runId", shortResult.runId);
+                await AsyncStorage.setItem("shortResult", JSON.stringify(shortResult));
                 await AsyncStorage.setItem("lastShortResult", JSON.stringify(shortResult));
                 await AsyncStorage.setItem("lastShortResultAt", new Date().toISOString());
 

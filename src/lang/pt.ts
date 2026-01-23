@@ -86,6 +86,9 @@ const pt = {
     shortVersion: "Versão curta",
     fullVersion: "Versão completa",
     noSavedResult: "Ainda não há resultados salvos.",
+    updating: "Atualizando o resultado curto...",
+    updated: "Atualizado.",
+    updateError: "Não foi possível atualizar o resultado.",
 
     elements: {
         air: "Ar",

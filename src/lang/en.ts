@@ -86,6 +86,9 @@ const en = {
     shortVersion: "Short version",
     fullVersion: "Full version",
     noSavedResult: "No saved result yet.",
+    updating: "Updating short result...",
+    updated: "Updated.",
+    updateError: "Couldn’t update the result.",
 
     elements: {
         air: "Air",

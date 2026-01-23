@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
+  ActivityIndicator,
   Image,
   Pressable,
   ScrollView,
@@ -12,6 +13,7 @@ import {
   View,
 } from "react-native";
 
+import { sendTestToBackend } from "../../src/api/backend";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
@@ -31,12 +33,17 @@ type ShortResult = {
   element: ElementRu;
   genderForm: Gender;
   text: string;
+  runId: string;
 };
 
 type FullResult = {
   text: string;
 };
 
+type ShortResponse = {
+  type: "short";
+  result: ShortResult;
+};
 
 const translations = { ru, en, es, pt };
 const LANG_OPTIONS: Lang[] = ["ru", "en", "es", "pt"];
@@ -52,6 +59,9 @@ export default function ProfileScreen() {
   const [fullResult, setFullResult] = useState<FullResult | null>(null);
   const [hasFullAccess, setHasFullAccess] = useState(false);
   const [shortImage, setShortImage] = useState<any | null>(null);
+  const [isUpdatingShortResult, setIsUpdatingShortResult] = useState(false);
+  const [updateError, setUpdateError] = useState<string | null>(null);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const t = translations[currentLang];
 
@@ -145,13 +155,69 @@ export default function ProfileScreen() {
 
   const handleSaveName = async () => {
     const trimmed = nameInput.trim();
+    setUpdateError(null);
+    setUpdateSuccess(false);
     if (trimmed.length === 0) {
       await AsyncStorage.removeItem("userName");
       setNameInput("");
-      return;
+    } else {
+      await AsyncStorage.setItem("userName", trimmed);
+      setNameInput(trimmed);
     }
-    await AsyncStorage.setItem("userName", trimmed);
-    setNameInput(trimmed);
+
+    setIsUpdatingShortResult(true);
+
+    try {
+      const storedLang = await AsyncStorage.getItem("lang");
+      const effectiveLang =
+        storedLang && LANG_OPTIONS.includes(storedLang as Lang)
+          ? (storedLang as Lang)
+          : currentLang;
+
+      const genderRaw = await AsyncStorage.getItem("gender");
+
+      const gender: Gender =
+        genderRaw === "female" || genderRaw === "male" ? genderRaw : "unspecified";
+
+      const keys = await AsyncStorage.getAllKeys();
+      const answerKeys = keys.filter((key) => key.startsWith("answer_"));
+      const pairs = await AsyncStorage.multiGet(answerKeys);
+
+      const answers = pairs
+        .filter(([_, value]) => value !== null)
+        .map(([key, value]) => ({
+          questionId: Number((key ?? "").replace("answer_", "")),
+          answer: value ?? "",
+        }))
+        .sort((a, b) => a.questionId - b.questionId);
+
+      const payload = {
+        name: trimmed,
+        lang: effectiveLang,
+        gender,
+        answers,
+      };
+
+      const response = await sendTestToBackend<ShortResponse>("short", payload);
+      const nextShortResult = response.result;
+
+      await AsyncStorage.multiSet([
+        ["result_animal", nextShortResult.animal],
+        ["result_element", nextShortResult.element],
+        ["runId", nextShortResult.runId],
+        ["shortResult", JSON.stringify(nextShortResult)],
+        ["lastShortResult", JSON.stringify(nextShortResult)],
+        ["lastShortResultAt", Date.now().toString()],
+      ]);
+
+      setShortResult(nextShortResult);
+      setUpdateSuccess(true);
+    } catch (error) {
+      console.error("Failed to update short result", error);
+      setUpdateError(t.updateError);
+    } finally {
+      setIsUpdatingShortResult(false);
+    }
   };
 
   const changeLang = async (nextLang: Lang) => {
@@ -211,6 +277,18 @@ export default function ProfileScreen() {
           >
             <Text style={startScreenStyles.buttonText}>{t.save}</Text>
           </TouchableOpacity>
+          <View style={profileStyles.updateStatus}>
+            {isUpdatingShortResult ? (
+              <View style={profileStyles.updateRow}>
+                <ActivityIndicator size="small" color="#C89B3C" />
+                <Text style={profileStyles.updateText}>{t.updating}</Text>
+              </View>
+            ) : updateError ? (
+              <Text style={profileStyles.updateError}>{updateError}</Text>
+            ) : updateSuccess ? (
+              <Text style={profileStyles.updateSuccess}>{t.updated}</Text>
+            ) : null}
+          </View>
         </View>
 
         <View style={profileStyles.section}>
@@ -291,6 +369,27 @@ const profileStyles = StyleSheet.create({
   },
   saveButton: {
     marginTop: 16,
+  },
+  updateStatus: {
+    marginTop: 12,
+    minHeight: 20,
+  },
+  updateRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 8,
+  },
+  updateText: {
+    color: "#7F8790",
+    fontSize: 13,
+  },
+  updateError: {
+    color: "#C97B7B",
+    fontSize: 13,
+  },
+  updateSuccess: {
+    color: "#7FBF8E",
+    fontSize: 13,
   },
   resultCard: {
     backgroundColor: "#1A1E24",
