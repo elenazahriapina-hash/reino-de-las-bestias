@@ -60,6 +60,8 @@ export default function ShortResultScreen() {
                         await AsyncStorage.setItem("result_element", cachedResult.element);
                         await AsyncStorage.setItem("runId", cachedResult.runId);
                         await AsyncStorage.setItem("shortResult", JSON.stringify(cachedResult));
+                        await AsyncStorage.setItem("lastShortResult", JSON.stringify(cachedResult));
+                        await AsyncStorage.setItem("lastShortResultAt", new Date().toISOString());
                         setImage(
                             getArchetypeImage({
                                 animal: cachedResult.animal,
@@ -112,6 +114,8 @@ export default function ShortResultScreen() {
                 await AsyncStorage.setItem("result_element", shortResult.element);
 
                 await AsyncStorage.setItem("runId", shortResult.runId);
+                await AsyncStorage.setItem("lastShortResult", JSON.stringify(shortResult));
+                await AsyncStorage.setItem("lastShortResultAt", new Date().toISOString());
 
                 setResult(shortResult);
 
@@ -182,13 +186,15 @@ export default function ShortResultScreen() {
                     : { message: shareMessage }
             );
 
+        } catch (shareError) {
+            console.error(t.shareError, shareError);
+        } finally {
+
             const href = {
-                pathname: "/result/after-share",
+                pathname: "/result/registration",
                 params: { lang: currentLang },
             } as unknown as Href;
             router.push(href);
-        } catch (shareError) {
-            console.error(t.shareError, shareError);
         }
     };
 
