@@ -45,6 +45,18 @@ type ShortResponse = {
   result: ShortResult;
 };
 
+type FullResponse = {
+  type: "full";
+  result: FullResult;
+};
+
+type LockedArchetype = {
+  animal: AnimalCode;
+  element: ElementRu;
+  genderForm: Gender;
+};
+
+
 const translations = { ru, en, es, pt };
 const LANG_OPTIONS: Lang[] = ["ru", "en", "es", "pt"];
 
@@ -179,6 +191,25 @@ export default function ProfileScreen() {
       const gender: Gender =
         genderRaw === "female" || genderRaw === "male" ? genderRaw : "unspecified";
 
+      const cachedShortRaw = await AsyncStorage.getItem("lastShortResult");
+      if (!cachedShortRaw) {
+        setUpdateError(t.noSavedResultToUpdate);
+        return;
+      }
+
+      let lockedArchetype: LockedArchetype;
+      try {
+        const cachedShort = JSON.parse(cachedShortRaw) as ShortResult;
+        lockedArchetype = {
+          animal: cachedShort.animal,
+          element: cachedShort.element,
+          genderForm: cachedShort.genderForm,
+        };
+      } catch (error) {
+        console.warn("Failed to parse lastShortResult", error);
+        setUpdateError(t.noSavedResultToUpdate);
+        return;
+      }
       const keys = await AsyncStorage.getAllKeys();
       const answerKeys = keys.filter((key) => key.startsWith("answer_"));
       const pairs = await AsyncStorage.multiGet(answerKeys);
@@ -196,6 +227,9 @@ export default function ProfileScreen() {
         lang: effectiveLang,
         gender,
         answers,
+        lockedAnimal: lockedArchetype.animal,
+        lockedElement: lockedArchetype.element,
+        lockedGenderForm: lockedArchetype.genderForm,
       };
 
       const response = await sendTestToBackend<ShortResponse>("short", payload);
@@ -211,6 +245,35 @@ export default function ProfileScreen() {
       ]);
 
       setShortResult(nextShortResult);
+
+      if (hasFullAccess) {
+        const cachedFullRaw = await AsyncStorage.getItem("lastFullResult");
+        if (cachedFullRaw) {
+          const fullPayload = {
+            runId: nextShortResult.runId,
+            name: trimmed,
+            lang: effectiveLang,
+            gender,
+            animal: nextShortResult.animal,
+            element: nextShortResult.element,
+            answers,
+            lockedAnimal: lockedArchetype.animal,
+            lockedElement: lockedArchetype.element,
+            lockedGenderForm: lockedArchetype.genderForm,
+          };
+          const fullResponse = await sendTestToBackend<FullResponse>(
+            "full",
+            fullPayload
+          );
+          const nextFullResult = fullResponse.result;
+          await AsyncStorage.setItem(
+            "lastFullResult",
+            JSON.stringify(nextFullResult)
+          );
+          setFullResult(nextFullResult);
+        }
+      }
+
       setUpdateSuccess(true);
     } catch (error) {
       console.error("Failed to update short result", error);

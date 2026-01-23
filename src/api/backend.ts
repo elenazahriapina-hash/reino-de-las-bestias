@@ -10,6 +10,9 @@ export type ShortTestPayload = {
     lang: "ru" | "en" | "es" | "pt";
     gender?: string | null;
     answers: TestAnswer[];
+    lockedAnimal?: string;
+    lockedElement?: string;
+    lockedGenderForm?: string;
 };
 
 export type FullTestPayload = ShortTestPayload & {

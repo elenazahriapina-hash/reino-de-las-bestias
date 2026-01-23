@@ -86,6 +86,7 @@ const ru = {
   shortVersion: "Краткая версия",
   fullVersion: "Полная версия",
   noSavedResult: "Пока нет сохранённого результата.",
+  noSavedResultToUpdate: "Нет сохранённого результата для обновления.",
   updating: "Обновляем краткий результат...",
   updated: "Обновлено.",
   updateError: "Не удалось обновить результат.",

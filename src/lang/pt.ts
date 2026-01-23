@@ -86,6 +86,7 @@ const pt = {
     shortVersion: "Versão curta",
     fullVersion: "Versão completa",
     noSavedResult: "Ainda não há resultados salvos.",
+    noSavedResultToUpdate: "Não há resultado salvo para atualizar.",
     updating: "Atualizando o resultado curto...",
     updated: "Atualizado.",
     updateError: "Não foi possível atualizar o resultado.",
