@@ -77,6 +77,15 @@ const ru = {
   profileSoon: "Скоро здесь будет вход через Telegram или Google.",
   back: "Назад",
   profileName: "Имя",
+  goToProfile: "Перейти в профиль",
+  language: "Язык",
+  nameLabel: "Имя",
+  nicknameLabel: "Имя или ник",
+  save: "Сохранить",
+  yourResult: "Твой результат",
+  shortVersion: "Краткая версия",
+  fullVersion: "Полная версия",
+  noSavedResult: "Пока нет сохранённого результата.",
 
   elements: {
     air: "Воздух",

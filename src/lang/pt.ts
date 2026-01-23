@@ -77,6 +77,15 @@ const pt = {
     profileSoon: "Em breve você poderá entrar com Telegram ou Google.",
     back: "Voltar",
     profileName: "Nome",
+    goToProfile: "Ir para o perfil",
+    language: "Idioma",
+    nameLabel: "Nome",
+    nicknameLabel: "Nome ou apelido",
+    save: "Salvar",
+    yourResult: "Seu resultado",
+    shortVersion: "Versão curta",
+    fullVersion: "Versão completa",
+    noSavedResult: "Ainda não há resultados salvos.",
 
     elements: {
         air: "Ar",

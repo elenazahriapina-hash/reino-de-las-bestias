@@ -80,6 +80,15 @@ const es = {
     profileSoon: "Pronto vas a poder iniciar sesión con Telegram o Google.",
     back: "Volver",
     profileName: "Nombre",
+    goToProfile: "Ir al perfil",
+    language: "Idioma",
+    nameLabel: "Nombre",
+    nicknameLabel: "Nombre o apodo",
+    save: "Guardar",
+    yourResult: "Tu resultado",
+    shortVersion: "Versión corta",
+    fullVersion: "Versión completa",
+    noSavedResult: "Todavía no hay resultados guardados.",
 
     elements: {
         air: "Aire",

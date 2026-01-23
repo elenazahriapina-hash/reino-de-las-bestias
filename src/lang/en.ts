@@ -77,6 +77,15 @@ const en = {
     profileSoon: "Soon you’ll be able to sign in with Telegram or Google.",
     back: "Back",
     profileName: "Name",
+    goToProfile: "Go to profile",
+    language: "Language",
+    nameLabel: "Name",
+    nicknameLabel: "Name or nickname",
+    save: "Save",
+    yourResult: "Your result",
+    shortVersion: "Short version",
+    fullVersion: "Full version",
+    noSavedResult: "No saved result yet.",
 
     elements: {
         air: "Air",

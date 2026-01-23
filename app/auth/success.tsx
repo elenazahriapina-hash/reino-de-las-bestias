@@ -32,7 +32,7 @@ export default function ProfileCreatedScreen() {
 
             <View style={styles.bottom}>
                 <TouchableOpacity style={styles.button} onPress={() => router.push(profileHref)}>
-                    <Text style={styles.buttonText}>{t.successCta}</Text>
+                    <Text style={styles.buttonText}>{t.goToProfile}</Text>
                 </TouchableOpacity>
             </View>
         </View>
