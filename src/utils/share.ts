@@ -1,5 +1,5 @@
 import { Asset } from "expo-asset";
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system/legacy";
 import { NativeModules, Share as NativeShare } from "react-native";
 
 import en from "../lang/en";
@@ -137,7 +137,7 @@ export async function getShareImageUri(imageModule: number) {
     const extension = sourceUri.split(".").pop()?.split("?")[0] ?? "png";
     const baseDir = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
     if (!baseDir) {
-        throw new Error("No cache/document directory available");
+        throw new Error("No cache or document directory available");
     }
 
     const destination = `${baseDir}archetype-share-${Date.now()}.${extension}`;
@@ -168,4 +168,3 @@ export async function shareResult(options: {
 
     await NativeShare.share(payload);
 }
-

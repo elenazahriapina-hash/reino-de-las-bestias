@@ -18,6 +18,8 @@ import {
 
 import { buildShareMessage, shareResult } from "../../src/utils/share";
 
+type Lang = "ru" | "en" | "es" | "pt";
+
 type ShortResult = {
     animal: AnimalCode;
     element: ElementRu;
