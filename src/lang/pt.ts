@@ -24,6 +24,7 @@ const pt = {
     backHome: "Voltar ao início",
     share: "Compartilhar",
     sharePrompt: "Curioso(a) para saber o seu?",
+    shareWhoAreYou: "Quem é você?",
     openFull: "Abrir análise completa",
     later: "Depois",
     afterShareTitle: "Quer ir mais fundo?",
@@ -62,6 +63,7 @@ const pt = {
     conclusion: "Conclusão",
 
     profileEnter: "Entrar no perfil",
+    enterProfile: "Entrar no perfil",
     introTitle: "🧠 Reino das Bestas",
     introP1: "Descubra seu arquétipo. Veja a si mesmo de fora.",
     introP2:
@@ -85,6 +87,8 @@ const pt = {
     yourResult: "Seu resultado",
     shortVersion: "Versão curta",
     fullVersion: "Versão completa",
+    shortInProfileTitle: "Interpretação breve",
+    fullInProfileTitle: "Interpretação completa",
     noSavedResult: "Ainda não há resultados salvos.",
     noSavedResultToUpdate: "Não há resultado salvo para atualizar.",
     updating: "Atualizando o resultado curto...",
@@ -100,6 +104,12 @@ const pt = {
 
     shareTemplate: "O meu arquétipo é {archetype} · {element}. E o teu?",
     shareError: "Não foi possível partilhar o resultado",
+
+    backToProfile: "Voltar ao perfil",
+    exitToMain: "Sair para o início",
+    logoutProfile: "Sair do perfil",
+    switchProfile: "Trocar perfil",
+    goToMain: "Ir para o início",
 
     paywallTitle: "Análise completa",
     paywallSubtitle: "Ecrã de pagamento (stub)",

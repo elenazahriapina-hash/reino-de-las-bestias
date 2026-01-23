@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
@@ -23,13 +24,28 @@ export default function ProviderChoiceScreen() {
         params: { lang: currentLang },
     } as unknown as Href;
 
+    const handleProviderSelect = async (provider: "google" | "telegram") => {
+        await AsyncStorage.multiSet([
+            ["isProfileActive", "true"],
+            ["authProvider", provider],
+        ]);
+        router.push(successHref);
+    };
+
+
     return (
         <View style={styles.container}>
             <View style={styles.center}>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(successHref)}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => handleProviderSelect("google")}
+                >
                     <Text style={styles.buttonText}>{t.providerGoogle}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(successHref)}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => handleProviderSelect("telegram")}
+                >
                     <Text style={styles.buttonText}>{t.providerTelegram}</Text>
                 </TouchableOpacity>
             </View>

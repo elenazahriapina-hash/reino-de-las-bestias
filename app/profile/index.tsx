@@ -86,6 +86,33 @@ export default function ProfileScreen() {
     [currentLang]
   );
 
+  const fullResultHref = useMemo(
+    () =>
+      ({
+        pathname: "/result/full",
+        params: { lang: currentLang },
+      }) as unknown as Href,
+    [currentLang]
+  );
+
+  const providersHref = useMemo(
+    () =>
+      ({
+        pathname: "/auth/providers",
+        params: { lang: currentLang },
+      }) as unknown as Href,
+    [currentLang]
+  );
+
+  const mainHref = useMemo(
+    () =>
+      ({
+        pathname: "/",
+        params: { lang: currentLang },
+      }) as unknown as Href,
+    [currentLang]
+  );
+
   useEffect(() => {
     if (lang && LANG_OPTIONS.includes(lang)) {
       setCurrentLang(lang);
@@ -288,6 +315,18 @@ export default function ProfileScreen() {
     await AsyncStorage.setItem("lang", nextLang);
   };
 
+  const handleLogout = async () => {
+    await AsyncStorage.multiSet([["isProfileActive", "false"]]);
+    await AsyncStorage.removeItem("authProvider");
+    router.push(mainHref);
+  };
+
+  const handleSwitchProfile = async () => {
+    await AsyncStorage.multiSet([["isProfileActive", "false"]]);
+    await AsyncStorage.removeItem("authProvider");
+    router.push(providersHref);
+  };
+
   return (
     <View style={startScreenStyles.container}>
       <ScrollView
@@ -361,7 +400,7 @@ export default function ProfileScreen() {
               {shortImage ? (
                 <Image source={shortImage} style={profileStyles.resultImage} />
               ) : null}
-              <Text style={profileStyles.resultLabel}>{t.shortVersion}</Text>
+              <Text style={profileStyles.resultLabel}>{t.shortInProfileTitle}</Text>
               <Text style={profileStyles.resultText}>{shortResult.text}</Text>
             </View>
           ) : (
@@ -369,14 +408,23 @@ export default function ProfileScreen() {
           )}
 
           {hasFullAccess ? (
-            <View style={profileStyles.resultCard}>
-              <Text style={profileStyles.resultLabel}>{t.fullVersion}</Text>
-              {fullResult ? (
-                <Text style={profileStyles.resultText}>{fullResult.text}</Text>
-              ) : (
-                <Text style={profileStyles.helperText}>{t.noSavedResult}</Text>
-              )}
-            </View>
+            <>
+              <View style={profileStyles.resultCard}>
+                <Text style={profileStyles.resultLabel}>{t.fullInProfileTitle}</Text>
+                {fullResult ? (
+                  <Text style={profileStyles.resultText}>{fullResult.text}</Text>
+                ) : (
+                  <Text style={profileStyles.helperText}>{t.noSavedResult}</Text>
+                )}
+              </View>
+              <TouchableOpacity
+                style={[startScreenStyles.buttonSecondary, profileStyles.getFullButton]}
+                onPress={() => router.push(fullResultHref)}
+                accessibilityLabel={t.openFull}
+              >
+                <Text style={startScreenStyles.buttonText}>{t.openFull}</Text>
+              </TouchableOpacity>
+            </>
           ) : (
             <TouchableOpacity
               style={[startScreenStyles.buttonSecondary, profileStyles.getFullButton]}
@@ -386,6 +434,27 @@ export default function ProfileScreen() {
               <Text style={startScreenStyles.buttonText}>{t.getFull}</Text>
             </TouchableOpacity>
           )}
+        </View>
+
+        <View style={profileStyles.section}>
+          <TouchableOpacity
+            style={startScreenStyles.buttonSecondary}
+            onPress={handleLogout}
+          >
+            <Text style={startScreenStyles.buttonText}>{t.logoutProfile}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={startScreenStyles.buttonSecondary}
+            onPress={handleSwitchProfile}
+          >
+            <Text style={startScreenStyles.buttonText}>{t.switchProfile}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={startScreenStyles.buttonTertiary}
+            onPress={() => router.push(mainHref)}
+          >
+            <Text style={startScreenStyles.buttonTertiaryText}>{t.goToMain}</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

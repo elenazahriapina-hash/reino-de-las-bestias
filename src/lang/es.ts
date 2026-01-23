@@ -25,6 +25,7 @@ const es = {
     backHome: "Volver al inicio",
     share: "Compartir",
     sharePrompt: "¿Y tu, quién eres?",
+    shareWhoAreYou: "¿Y tú, quién eres?",
     openFull: "Abrir análisis completo",
     later: "Más tarde",
     afterShareTitle: "¿Querés ir más profundo?",
@@ -65,6 +66,7 @@ const es = {
     conclusion: "Conclusión",
 
     profileEnter: "Entrar al perfil",
+    enterProfile: "Entrar al perfil",
     introTitle: "🧠 Reino de las Bestias",
     introP1: "Descubrí tu arquetipo. Mirate desde afuera.",
     introP2:
@@ -88,6 +90,8 @@ const es = {
     yourResult: "Tu resultado",
     shortVersion: "Versión corta",
     fullVersion: "Versión completa",
+    shortInProfileTitle: "Interpretación breve",
+    fullInProfileTitle: "Interpretación completa",
     noSavedResult: "Todavía no hay resultados guardados.",
     noSavedResultToUpdate: "No hay un resultado guardado para actualizar.",
     updating: "Actualizando el resultado corto...",
@@ -103,6 +107,12 @@ const es = {
 
     shareTemplate: "Mi arquetipo es {archetype} · {element}. ¿Y el tuyo?",
     shareError: "No se pudo compartir el resultado",
+
+    backToProfile: "Volver al perfil",
+    exitToMain: "Salir al inicio",
+    logoutProfile: "Cerrar sesión del perfil",
+    switchProfile: "Cambiar perfil",
+    goToMain: "Ir al inicio",
 
     paywallTitle: "Análisis completo",
     paywallSubtitle: "Pantalla de pago (provisorio)",

@@ -24,6 +24,7 @@ const en = {
     backHome: "Back to home",
     share: "Share",
     sharePrompt: "Curious who you are?",
+    shareWhoAreYou: "Who are you?",
     later: "Later",
     afterShareTitle: "Want to go deeper?",
     afterShareText: "If this resonated, the full version reveals more sides.",
@@ -62,6 +63,7 @@ const en = {
     conclusion: "Conclusion",
 
     profileEnter: "Open profile",
+    enterProfile: "Open profile",
     introTitle: "🧠 Beast Realm",
     introP1: "Discover your archetype. See yourself from the outside.",
     introP2:
@@ -85,6 +87,8 @@ const en = {
     yourResult: "Your result",
     shortVersion: "Short version",
     fullVersion: "Full version",
+    shortInProfileTitle: "Short interpretation",
+    fullInProfileTitle: "Full interpretation",
     noSavedResult: "No saved result yet.",
     noSavedResultToUpdate: "No saved result to update.",
     updating: "Updating short result...",
@@ -100,6 +104,12 @@ const en = {
 
     shareTemplate: "My archetype is {archetype} · {element}. What about yours?",
     shareError: "Could not share the result",
+
+    backToProfile: "Back to profile",
+    exitToMain: "Exit to main",
+    logoutProfile: "Log out of profile",
+    switchProfile: "Switch profile",
+    goToMain: "Go to main screen",
 
     paywallTitle: "Full breakdown",
     paywallSubtitle: "Payment screen (stub)",

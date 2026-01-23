@@ -1,8 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Asset } from "expo-asset";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, Share, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
@@ -11,14 +10,13 @@ import ru from "../../src/lang/ru";
 import { sendTestToBackend } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
 import {
-    getAnimalRuName,
     getArchetypeImage,
     type AnimalCode,
     type ElementRu,
     type Gender,
 } from "../../src/utils/animals";
 
-type Lang = "ru" | "en" | "es" | "pt";
+import { buildShareMessage, shareResult } from "../../src/utils/share";
 
 type ShortResult = {
     animal: AnimalCode;
@@ -142,53 +140,21 @@ export default function ShortResultScreen() {
         loadResult();
     }, [currentLang]);
 
-    const elementKeyByRu: Record<ElementRu, "air" | "water" | "fire" | "earth"> = {
-        "Воздух": "air",
-        "Вода": "water",
-        "Огонь": "fire",
-        "Земля": "earth",
-    };
-
-    const archetypeName = result
-        ? currentLang === "ru"
-            ? getAnimalRuName(result.animal, result.genderForm)
-            : result.animal
-        : "";
-
-    const elementName = result
-        ? t.elements[elementKeyByRu[result.element]] ?? result.element
-        : "";
-
     const appUrl = process.env.EXPO_PUBLIC_APP_URL?.trim();
-    const shareText = t.shareTemplate
-        .replace("{archetype}", archetypeName)
-        .replace("{element}", elementName);
-    const shareMessage = appUrl ? `${shareText}\n${appUrl}` : shareText;
+    const shareMessage = result
+        ? buildShareMessage({
+            lang: currentLang,
+            animalCode: result.animal,
+            elementCode: result.element,
+            genderForm: result.genderForm,
+            appUrl,
+        })
+        : "";
 
     const handleShare = async () => {
         if (!result) return;
         try {
-            let shareUrl: string | undefined;
-
-            if (image) {
-                try {
-                    const asset = Asset.fromModule(image);
-                    await asset.downloadAsync();
-                    shareUrl = asset.localUri ?? asset.uri;
-                } catch (assetError) {
-                    console.warn("Share asset load failed:", assetError);
-                }
-            }
-
-            await Share.share(
-                shareUrl
-                    ? {
-                        message: shareMessage,
-                        url: shareUrl,
-                    }
-                    : { message: shareMessage }
-            );
-
+            await shareResult({ message: shareMessage, imageModule: image });
         } catch (shareError) {
             console.error(t.shareError, shareError);
         } finally {

@@ -42,6 +42,16 @@ export default function StartScreen() {
 
   const introHref = { pathname: "/intro", params: { lang: currentLang } } as unknown as Href;
   const profileHref = { pathname: "/profile", params: { lang: currentLang } } as unknown as Href;
+  const providersHref = { pathname: "/auth/providers", params: { lang: currentLang } } as unknown as Href;
+
+  const handleProfileEnter = async () => {
+    const isActive = await AsyncStorage.getItem("isProfileActive");
+    if (isActive === "true") {
+      router.push(profileHref);
+      return;
+    }
+    router.push(providersHref);
+  };
 
   return (
     <View style={styles.container}>
@@ -88,9 +98,9 @@ export default function StartScreen() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push(profileHref)}
+          onPress={handleProfileEnter}
         >
-          <Text style={styles.buttonText}>{t.profileEnter}</Text>
+          <Text style={styles.buttonText}>{t.enterProfile}</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>{t.disclaimer}</Text>

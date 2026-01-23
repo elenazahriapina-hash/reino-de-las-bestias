@@ -1,12 +1,13 @@
 // app/result/full.tsx
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
 import {
     ActivityIndicator,
     ScrollView,
     Text,
+    TouchableOpacity,
     View,
 } from "react-native";
 
@@ -28,6 +29,7 @@ type FullResponse = {
 };
 
 export default function FullResultScreen() {
+    const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
     const translations = { ru, en, es, pt };
@@ -86,6 +88,10 @@ export default function FullResultScreen() {
                 );
 
                 setText(response.result.text);
+                await AsyncStorage.setItem(
+                    "lastFullResult",
+                    JSON.stringify(response.result)
+                );
 
             } catch (e: any) {
                 console.error("Ошибка получения full-результата", e);
@@ -105,6 +111,16 @@ export default function FullResultScreen() {
             </View>
         );
     }
+
+    const profileHref = {
+        pathname: "/profile",
+        params: { lang: currentLang },
+    } as unknown as Href;
+
+    const mainHref = {
+        pathname: "/",
+        params: { lang: currentLang },
+    } as unknown as Href;
 
     return (
         <ScrollView
@@ -130,6 +146,22 @@ export default function FullResultScreen() {
                     {text}
                 </Text>
             )}
+
+            <View style={styles.bottom}>
+                <TouchableOpacity
+                    style={styles.buttonSecondary}
+                    onPress={() => router.push(profileHref)}
+                >
+                    <Text style={styles.buttonText}>{t.backToProfile}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.buttonTertiary}
+                    onPress={() => router.push(mainHref)}
+                >
+                    <Text style={styles.buttonTertiaryText}>{t.exitToMain}</Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
     );
 }
