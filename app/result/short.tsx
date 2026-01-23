@@ -236,13 +236,13 @@ export default function ShortResultScreen() {
                     style={styles.button}
                     onPress={() => {
                         const href = {
-                            pathname: "/paywall",
+                            pathname: "/result/registration",
                             params: { lang: currentLang },
                         } as unknown as Href;
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.getFull}</Text>
+                    <Text style={styles.buttonText}>{t.continue}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

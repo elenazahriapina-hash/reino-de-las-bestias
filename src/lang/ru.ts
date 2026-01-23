@@ -14,6 +14,7 @@ const ru = {
   finishCta: "Посмотреть результат",
   getResult: "Получить результат",
   getFull: "Получить полный разбор",
+  continue: "Продолжить",
   loadingTitle: "Формируем результат",
   loadingText: "Это займёт несколько секунд.",
   loadingFullTitle: "Формируем полный разбор",
@@ -27,7 +28,22 @@ const ru = {
   later: "Позже",
   afterShareTitle: "Хочешь глубже?",
   afterShareText: "Если откликнулось — полное описание открывает больше граней.",
-
+  registrationTitle: "Сохранить свой архетип",
+  registrationBody:
+    "Ты уже увидел(а) свой архетип и стихию.\nТы можешь сохранить этот результат,\nчтобы вернуться к нему позже и видеть, как он меняется со временем.\n\nРегистрация нужна только для сохранения результата.",
+  registrationPrimary: "Создать профиль",
+  registrationSecondary: "У меня уже есть профиль",
+  registrationTertiary: "Вернуться в главное меню",
+  registrationMicrocopy:
+    "Регистрация не обязательна.\nТолько Google или Telegram. Никаких подписок и лишних писем.",
+  providerGoogle: "Google",
+  providerTelegram: "Telegram",
+  loginTitle: "Вход",
+  loginBody: "Здесь будет вход через Google или Telegram.",
+  loginCta: "Выбрать способ входа",
+  successTitle: "Профиль создан",
+  successBody: "Твой результат сохранён. Ты сможешь возвращаться к нему в любое время.",
+  successCta: "Продолжить",
 
   next: "Далее",
   questionWord: "Вопрос",

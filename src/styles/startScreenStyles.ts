@@ -27,6 +27,13 @@ export const styles = StyleSheet.create({
         textAlign: "center",
     },
 
+    body: {
+        fontSize: 16,
+        color: "#CFCFCF",
+        lineHeight: 24,
+        textAlign: "center",
+    },
+
     bottom: {
         marginBottom: 60,
         alignItems: "center",
@@ -45,6 +52,31 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
         letterSpacing: 1,
+    },
+
+    buttonSecondary: {
+        backgroundColor: "transparent",
+        borderRadius: 28,
+        paddingVertical: 14,
+        paddingHorizontal: 64,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: "#2A2F36",
+    },
+    buttonTertiary: {
+        paddingVertical: 8,
+    },
+    buttonTertiaryText: {
+        color: "#C89B3C",
+        fontSize: 14,
+        fontWeight: "600",
+        letterSpacing: 0.5,
+    },
+    microcopy: {
+        fontSize: 12,
+        color: "#7F8790",
+        textAlign: "center",
+        marginBottom: 20,
     },
 
     subtitle: {
