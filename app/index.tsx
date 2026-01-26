@@ -24,14 +24,33 @@ export default function StartScreen() {
 
   const t = translations[currentLang];
 
-  // 🔹 загрузка сохранённого языка
   useEffect(() => {
-    AsyncStorage.getItem("lang").then((saved) => {
-      if (saved === "ru" || saved === "en" || saved === "es" || saved === "pt") {
-        setCurrentLang(saved);
+    const loadPreferences = async () => {
+      const [savedLang, lastShortResult, isProfileActive] =
+        await AsyncStorage.multiGet([
+          "lang",
+          "lastShortResult",
+          "isProfileActive",
+        ]);
+      const langValue = savedLang?.[1];
+      const resolvedLang: Lang =
+        langValue === "ru" || langValue === "en" || langValue === "es" || langValue === "pt"
+          ? langValue
+          : "ru";
+
+      setCurrentLang(resolvedLang);
+
+      if (lastShortResult?.[1] && isProfileActive?.[1] === "true") {
+        const shortResultHref = {
+          pathname: "/result/short",
+          params: { lang: resolvedLang },
+        } as unknown as Href;
+        router.replace(shortResultHref);
       }
-    });
-  }, []);
+    };
+
+    loadPreferences();
+  }, [router]);
 
   // 🔹 сохранение языка
   const changeLang = async (l: Lang) => {
@@ -41,13 +60,13 @@ export default function StartScreen() {
   };
 
   const introHref = { pathname: "/intro", params: { lang: currentLang } } as unknown as Href;
-  const profileHref = { pathname: "/profile", params: { lang: currentLang } } as unknown as Href;
+  const settingsHref = { pathname: "/settings", params: { lang: currentLang } } as unknown as Href;
   const providersHref = { pathname: "/auth/providers", params: { lang: currentLang } } as unknown as Href;
 
   const handleProfileEnter = async () => {
     const isActive = await AsyncStorage.getItem("isProfileActive");
     if (isActive === "true") {
-      router.push(profileHref);
+      router.push(settingsHref);
       return;
     }
     router.push(providersHref);
@@ -100,7 +119,7 @@ export default function StartScreen() {
           style={styles.button}
           onPress={handleProfileEnter}
         >
-          <Text style={styles.buttonText}>{t.enterProfile}</Text>
+          <Text style={styles.buttonText}>{t.settings}</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>{t.disclaimer}</Text>

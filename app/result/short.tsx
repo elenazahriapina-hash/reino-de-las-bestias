@@ -16,7 +16,7 @@ import {
     type Gender,
 } from "../../src/utils/animals";
 
-import { buildShareMessage, shareResult } from "../../src/utils/share";
+import { buildShareMessage, formatArchetypeLine, shareResult } from "../../src/utils/share";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
@@ -45,11 +45,14 @@ export default function ShortResultScreen() {
     const [result, setResult] = useState<ShortResult | null>(null);
     const [image, setImage] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
+    const [hasFullAccess, setHasFullAccess] = useState(false);
 
     useEffect(() => {
         const loadResult = async () => {
             try {
                 setError(null);
+                const accessValue = await AsyncStorage.getItem("hasFullAccess");
+                setHasFullAccess(accessValue === "true");
 
                 const cached =
                     (await AsyncStorage.getItem("lastShortResult")) ??
@@ -159,13 +162,6 @@ export default function ShortResultScreen() {
             await shareResult({ message: shareMessage, imageModule: image });
         } catch (shareError) {
             console.error(t.shareError, shareError);
-        } finally {
-
-            const href = {
-                pathname: "/result/registration",
-                params: { lang: currentLang },
-            } as unknown as Href;
-            router.push(href);
         }
     };
 
@@ -203,23 +199,60 @@ export default function ShortResultScreen() {
             {error ? (
                 <Text style={styles.quote}>{error}</Text>
             ) : result ? (
-                <Text style={styles.quote}>{result.text}</Text>
+                <>
+                    <Text style={styles.subtitle}>
+                        {formatArchetypeLine(
+                            currentLang,
+                            result.animal,
+                            result.element,
+                            result.genderForm
+                        )}
+                    </Text>
+                    <Text style={styles.quote}>{result.text}</Text>
+                </>
             ) : (
                 <Text style={styles.quote}>{t.noResult}</Text>
             )}
 
             <View style={styles.bottom}>
+                {hasFullAccess ? (
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            const href = {
+                                pathname: "/result/full",
+                                params: { lang: currentLang },
+                            } as unknown as Href;
+                            router.push(href);
+                        }}
+                    >
+                        <Text style={styles.buttonText}>{t.viewFullVersion}</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            const href = {
+                                pathname: "/paywall",
+                                params: { lang: currentLang },
+                            } as unknown as Href;
+                            router.push(href);
+                        }}
+                    >
+                        <Text style={styles.buttonText}>{t.buyFullVersion}</Text>
+                    </TouchableOpacity>
+                )}
                 <TouchableOpacity
-                    style={styles.button}
+                    style={styles.buttonSecondary}
                     onPress={() => {
                         const href = {
-                            pathname: "/result/registration",
+                            pathname: "/settings",
                             params: { lang: currentLang },
                         } as unknown as Href;
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.continue}</Text>
+                    <Text style={styles.buttonText}>{t.settings}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

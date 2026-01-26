@@ -18,8 +18,8 @@ export default function ProfileCreatedScreen() {
     const currentLang: Lang = (lang ?? "ru") as Lang;
     const t = translations[currentLang];
 
-    const profileHref = {
-        pathname: "/profile",
+    const settingsHref = {
+        pathname: "/settings",
         params: { lang: currentLang },
     } as unknown as Href;
 
@@ -31,8 +31,8 @@ export default function ProfileCreatedScreen() {
             </View>
 
             <View style={styles.bottom}>
-                <TouchableOpacity style={styles.button} onPress={() => router.push(profileHref)}>
-                    <Text style={styles.buttonText}>{t.goToProfile}</Text>
+                <TouchableOpacity style={styles.button} onPress={() => router.push(settingsHref)}>
+                    <Text style={styles.buttonText}>{t.settings}</Text>
                 </TouchableOpacity>
             </View>
         </View>

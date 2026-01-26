@@ -112,8 +112,8 @@ export default function FullResultScreen() {
         );
     }
 
-    const profileHref = {
-        pathname: "/profile",
+    const shortResultHref = {
+        pathname: "/result/short",
         params: { lang: currentLang },
     } as unknown as Href;
 
@@ -150,16 +150,16 @@ export default function FullResultScreen() {
             <View style={styles.bottom}>
                 <TouchableOpacity
                     style={styles.buttonSecondary}
-                    onPress={() => router.push(profileHref)}
+                    onPress={() => router.push(shortResultHref)}
                 >
-                    <Text style={styles.buttonText}>{t.backToProfile}</Text>
+                    <Text style={styles.buttonText}>{t.backToResult}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.buttonTertiary}
                     onPress={() => router.push(mainHref)}
                 >
-                    <Text style={styles.buttonTertiaryText}>{t.exitToMain}</Text>
+                    <Text style={styles.buttonTertiaryText}>{t.goToMain}</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>
