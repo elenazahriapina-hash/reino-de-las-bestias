@@ -110,7 +110,7 @@ const es = {
     shareTemplate: "Mi arquetipo es {archetype} · {element}. ¿Y el tuyo?",
     shareError: "No se pudo compartir el resultado",
 
-    buyFullVersion: "Comprar versión completa",
+    detailedDescriptionCta: "Ver descripción detallada",
     viewFullVersion: "Ver versión completa",
     backToResult: "Volver al resultado",
     backToProfile: "Volver al perfil",

@@ -107,7 +107,7 @@ const en = {
     shareTemplate: "My archetype is {archetype} · {element}. What about yours?",
     shareError: "Could not share the result",
 
-    buyFullVersion: "Buy full version",
+    detailedDescriptionCta: "Get detailed description",
     viewFullVersion: "View full version",
     backToResult: "Back to result",
     backToProfile: "Back to profile",

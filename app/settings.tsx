@@ -230,7 +230,9 @@ export default function SettingsScreen() {
 
     const handleLogout = async () => {
         await AsyncStorage.multiSet([["isProfileActive", "false"]]);
-        await AsyncStorage.removeItem("authProvider");
+        await AsyncStorage.multiRemove(["authProvider", "authIdentifier"]);
+        setAuthProvider(null);
+        setAuthIdentifier(null);
         router.push(mainHref);
     };
 

@@ -25,9 +25,12 @@ export default function ProviderChoiceScreen() {
     } as unknown as Href;
 
     const handleProviderSelect = async (provider: "google" | "telegram") => {
+        const authIdentifier =
+            provider === "google" ? "test@gmail.com" : "@testuser";
         await AsyncStorage.multiSet([
             ["isProfileActive", "true"],
             ["authProvider", provider],
+            ["authIdentifier", authIdentifier],
         ]);
         router.push(successHref);
     };

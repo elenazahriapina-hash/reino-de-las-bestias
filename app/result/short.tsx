@@ -239,7 +239,7 @@ export default function ShortResultScreen() {
                             router.push(href);
                         }}
                     >
-                        <Text style={styles.buttonText}>{t.buyFullVersion}</Text>
+                        <Text style={styles.buttonText}>{t.detailedDescriptionCta}</Text>
                     </TouchableOpacity>
                 )}
                 <TouchableOpacity

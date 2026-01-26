@@ -107,7 +107,7 @@ const ru = {
   shareTemplate: "Мой архетип — {archetype} · {element}, а твой какой?",
   shareError: "Не удалось поделиться результатом",
 
-  buyFullVersion: "Купить полную версию",
+  detailedDescriptionCta: "Получить подробное описание",
   viewFullVersion: "Смотреть полную версию",
   backToResult: "Вернуться к результату",
   backToProfile: "Вернуться в профиль",
