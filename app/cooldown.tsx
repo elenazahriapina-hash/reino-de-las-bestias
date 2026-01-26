@@ -61,6 +61,12 @@ export default function CooldownScreen() {
         params: { lang: currentLang },
     } as unknown as Href;
 
+    const handleGoToMain = async () => {
+        await AsyncStorage.setItem("skipAutoHubOnce", "true");
+        router.push(mainHref);
+    };
+
+
     return (
         <View style={styles.container}>
             <View style={styles.center}>
@@ -84,7 +90,7 @@ export default function CooldownScreen() {
                 <TouchableOpacity style={styles.buttonSecondary} onPress={() => router.push(settingsHref)}>
                     <Text style={styles.buttonText}>{t.settings}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonTertiary} onPress={() => router.push(mainHref)}>
+                <TouchableOpacity style={styles.buttonTertiary} onPress={handleGoToMain}>
                     <Text style={styles.buttonTertiaryText}>{t.goToMain}</Text>
                 </TouchableOpacity>
             </View>

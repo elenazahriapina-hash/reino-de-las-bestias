@@ -114,6 +114,11 @@ export default function ResultLoadingScreen() {
         params: { lang: currentLang },
     };
 
+    const handleGoHome = async () => {
+        await AsyncStorage.setItem("skipAutoHubOnce", "true");
+        router.push(homeHref);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.center}>
@@ -135,7 +140,7 @@ export default function ResultLoadingScreen() {
                     <TouchableOpacity style={styles.button} onPress={runLoading}>
                         <Text style={styles.buttonText}>{t.retry}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => router.push(homeHref)}>
+                    <TouchableOpacity style={styles.button} onPress={handleGoHome}>
                         <Text style={styles.buttonText}>{t.backHome}</Text>
                     </TouchableOpacity>
                 </View>

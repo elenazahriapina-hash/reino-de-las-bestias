@@ -73,11 +73,14 @@ export default function ShortResultScreen() {
                                 gender: cachedResult.genderForm,
                             })
                         );
+                        setLoading(false);
+                        return;
                     } catch (parseError) {
                         console.warn("Failed to parse cached short result", parseError);
                     }
-                    setError(t.shortError);
                 }
+
+                setError(t.shortError);
             } catch (e: any) {
                 console.error(t.shortError, e);
                 setError(t.shortError);

@@ -27,11 +27,12 @@ export default function StartScreen() {
 
   useEffect(() => {
     const loadPreferences = async () => {
-      const [savedLang, lastShortResult, isProfileActiveValue] =
+      const [savedLang, lastShortResult, isProfileActiveValue, skipAutoHubOnceValue] =
         await AsyncStorage.multiGet([
           "lang",
           "lastShortResult",
           "isProfileActive",
+          "skipAutoHubOnce",
         ]);
       const langValue = savedLang?.[1];
       const resolvedLang: Lang =
@@ -42,6 +43,11 @@ export default function StartScreen() {
       setCurrentLang(resolvedLang);
       const profileActive = isProfileActiveValue?.[1] === "true";
       setIsProfileActive(profileActive);
+
+      if (skipAutoHubOnceValue?.[1] === "true") {
+        await AsyncStorage.removeItem("skipAutoHubOnce");
+        return;
+      }
 
       if (lastShortResult?.[1] && profileActive) {
         const shortResultHref = {

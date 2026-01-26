@@ -122,6 +122,11 @@ export default function FullResultScreen() {
         params: { lang: currentLang },
     } as unknown as Href;
 
+    const handleGoToMain = async () => {
+        await AsyncStorage.setItem("skipAutoHubOnce", "true");
+        router.push(mainHref);
+    };
+
     return (
         <ScrollView
             style={{ flex: 1 }}
@@ -157,7 +162,7 @@ export default function FullResultScreen() {
 
                 <TouchableOpacity
                     style={styles.buttonTertiary}
-                    onPress={() => router.push(mainHref)}
+                    onPress={handleGoToMain}
                 >
                     <Text style={styles.buttonTertiaryText}>{t.goToMain}</Text>
                 </TouchableOpacity>

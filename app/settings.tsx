@@ -70,6 +70,20 @@ export default function SettingsScreen() {
         [currentLang]
     );
 
+    const mainHref = useMemo(
+        () =>
+            ({
+                pathname: "/",
+                params: { lang: currentLang },
+            }) as unknown as Href,
+        [currentLang]
+    );
+
+    const handleGoToMain = async () => {
+        await AsyncStorage.setItem("skipAutoHubOnce", "true");
+        router.push(mainHref);
+    };
+
     const authInfo = useMemo(() => {
         if (!authProvider || !authIdentifier) {
             return null;
@@ -82,16 +96,6 @@ export default function SettingsScreen() {
         }
         return null;
     }, [authIdentifier, authProvider]);
-
-
-    const mainHref = useMemo(
-        () =>
-            ({
-                pathname: "/",
-                params: { lang: currentLang },
-            }) as unknown as Href,
-        [currentLang]
-    );
 
     useEffect(() => {
         if (lang && LANG_OPTIONS.includes(lang)) {
@@ -336,7 +340,7 @@ export default function SettingsScreen() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={startScreenStyles.buttonTertiary}
-                        onPress={() => router.push(mainHref)}
+                        onPress={handleGoToMain}
                     >
                         <Text style={startScreenStyles.buttonTertiaryText}>{t.goToMain}</Text>
                     </TouchableOpacity>
