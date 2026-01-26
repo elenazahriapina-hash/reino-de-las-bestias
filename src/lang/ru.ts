@@ -37,6 +37,7 @@ const ru = {
   registrationTertiary: "Вернуться в главное меню",
   registrationMicrocopy:
     "Регистрация не обязательна.\nТолько Google или Telegram. Никаких подписок и лишних писем.",
+  saveResult: "Сохранить мой результат",
   providerGoogle: "Google",
   providerTelegram: "Telegram",
   loginTitle: "Вход",
@@ -56,6 +57,10 @@ const ru = {
   shortError: "Ошибка при получении результата",
   fullError: "Ошибка при получении результата",
   loadingResult: "Результат формируется. Попробуйте позже.",
+  cooldownTitle: "Перерыв между тестами",
+  cooldownBody: "Повторно пройти тест можно только раз в 30 дней.",
+  cooldownRemaining: "Доступно через {days}д {hours}ч.",
+  cooldownReady: "Тест снова доступен.",
 
   archetype: "Архетип",
   element: "Стихия",

@@ -37,6 +37,7 @@ const en = {
     registrationTertiary: "Return to main menu",
     registrationMicrocopy:
         "Registration is optional.\nOnly Google or Telegram. No subscriptions or extra emails.",
+    saveResult: "Save my result",
     providerGoogle: "Google",
     providerTelegram: "Telegram",
     loginTitle: "Log in",
@@ -56,6 +57,10 @@ const en = {
     shortError: "Error retrieving the result",
     fullError: "Error retrieving the result",
     loadingResult: "The result is being generated. Please try again.",
+    cooldownTitle: "Test cooldown",
+    cooldownBody: "You can only retake the test once every 30 days.",
+    cooldownRemaining: "Available in {days}d {hours}h.",
+    cooldownReady: "You can take the test again now.",
 
     archetype: "Archetype",
     element: "Element",

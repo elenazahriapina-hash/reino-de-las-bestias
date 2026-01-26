@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+
 import en from "../../src/lang/en";
 import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
@@ -14,7 +15,6 @@ import {
     type ElementRu,
     type Gender,
 } from "../../src/utils/animals";
-
 import { buildShareMessage, formatArchetypeLine, shareResult } from "../../src/utils/share";
 
 type Lang = "ru" | "en" | "es" | "pt";
@@ -27,7 +27,7 @@ type ShortResult = {
     runId: string;
 };
 
-export default function ShortResultScreen() {
+export default function GuestShortResultScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
 
@@ -38,7 +38,6 @@ export default function ShortResultScreen() {
     const [loading, setLoading] = useState(true);
     const [result, setResult] = useState<ShortResult | null>(null);
     const [image, setImage] = useState<any>(null);
-    const [hasFullAccess, setHasFullAccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -46,26 +45,19 @@ export default function ShortResultScreen() {
             try {
                 setError(null);
                 const profileActive = (await AsyncStorage.getItem("isProfileActive")) === "true";
-                if (!profileActive) {
+                if (profileActive) {
                     router.replace({
-                        pathname: "/result/guest-short",
+                        pathname: "/result/short",
                         params: { lang: currentLang },
                     } as unknown as Href);
                     return;
                 }
-                const accessValue = await AsyncStorage.getItem("hasFullAccess");
-                setHasFullAccess(accessValue === "true");
 
-                const cached = await AsyncStorage.getItem("lastShortResult");
+                const cached = await AsyncStorage.getItem("guestShortResult");
                 if (cached) {
                     try {
                         const cachedResult = JSON.parse(cached) as ShortResult;
                         setResult(cachedResult);
-                        await AsyncStorage.multiSet([
-                            ["result_animal", cachedResult.animal],
-                            ["result_element", cachedResult.element],
-                            ["runId", cachedResult.runId],
-                        ]);
                         setImage(
                             getArchetypeImage({
                                 animal: cachedResult.animal,
@@ -74,9 +66,9 @@ export default function ShortResultScreen() {
                             })
                         );
                     } catch (parseError) {
-                        console.warn("Failed to parse cached short result", parseError);
+                        console.warn("Failed to parse cached guest short result", parseError);
+                        setError(t.shortError);
                     }
-                    setError(t.shortError);
                 }
             } catch (e: any) {
                 console.error(t.shortError, e);
@@ -87,7 +79,7 @@ export default function ShortResultScreen() {
         };
 
         loadResult();
-    }, [currentLang, router]);
+    }, [currentLang, router, t.shortError]);
 
     const appUrl = process.env.EXPO_PUBLIC_APP_URL?.trim();
     const shareMessage = result
@@ -159,50 +151,20 @@ export default function ShortResultScreen() {
             )}
 
             <View style={styles.bottom}>
-                {hasFullAccess ? (
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            const href = {
-                                pathname: "/result/full",
-                                params: { lang: currentLang },
-                            } as unknown as Href;
-                            router.push(href);
-                        }}
-                    >
-                        <Text style={styles.buttonText}>{t.viewFullVersion}</Text>
-                    </TouchableOpacity>
-                ) : (
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            const href = {
-                                pathname: "/paywall",
-                                params: { lang: currentLang },
-                            } as unknown as Href;
-                            router.push(href);
-                        }}
-                    >
-                        <Text style={styles.buttonText}>{t.detailedDescriptionCta}</Text>
-                    </TouchableOpacity>
-                )}
                 <TouchableOpacity
-                    style={styles.buttonSecondary}
+                    style={styles.button}
                     onPress={() => {
                         const href = {
-                            pathname: "/settings",
+                            pathname: "/result/registration",
                             params: { lang: currentLang },
                         } as unknown as Href;
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.settings}</Text>
+                    <Text style={styles.buttonText}>{t.saveResult}</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={handleShare}
-                >
+                <TouchableOpacity style={styles.button} onPress={handleShare}>
                     <Text style={styles.buttonText}>{t.share}</Text>
                 </TouchableOpacity>
             </View>

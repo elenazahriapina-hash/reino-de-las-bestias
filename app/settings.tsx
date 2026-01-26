@@ -229,8 +229,18 @@ export default function SettingsScreen() {
     };
 
     const handleLogout = async () => {
+        const keys = await AsyncStorage.getAllKeys();
+        const answerKeys = keys.filter((key) => key.startsWith("answer_"));
         await AsyncStorage.multiSet([["isProfileActive", "false"]]);
-        await AsyncStorage.multiRemove(["authProvider", "authIdentifier"]);
+        await AsyncStorage.multiRemove([
+            "authProvider",
+            "authIdentifier",
+            "activeUserId",
+            "guestShortResult",
+            "guestShortResultAt",
+            "guestName",
+            ...answerKeys,
+        ]);
         setAuthProvider(null);
         setAuthIdentifier(null);
         router.push(mainHref);

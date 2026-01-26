@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
+import { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import en from "../../src/lang/en";
@@ -22,6 +24,36 @@ export default function ProfileCreatedScreen() {
         pathname: "/settings",
         params: { lang: currentLang },
     } as unknown as Href;
+
+    useEffect(() => {
+        const promoteGuestResult = async () => {
+            const [guestShortRaw, guestShortAt, guestName] = await AsyncStorage.multiGet([
+                "guestShortResult",
+                "guestShortResultAt",
+                "guestName",
+            ]);
+
+            const guestShortResult = guestShortRaw?.[1];
+            if (guestShortResult) {
+                await AsyncStorage.multiSet([
+                    ["lastShortResult", guestShortResult],
+                    ["lastShortResultAt", guestShortAt?.[1] ?? Date.now().toString()],
+                    ["lastTestAt", guestShortAt?.[1] ?? Date.now().toString()],
+                    ["isProfileActive", "true"],
+                ]);
+                await AsyncStorage.multiRemove(["guestShortResult", "guestShortResultAt"]);
+            }
+
+            if (guestName?.[1]) {
+                await AsyncStorage.multiSet([
+                    ["userName", guestName[1]],
+                ]);
+                await AsyncStorage.removeItem("guestName");
+            }
+        };
+
+        promoteGuestResult();
+    }, []);
 
     return (
         <View style={styles.container}>

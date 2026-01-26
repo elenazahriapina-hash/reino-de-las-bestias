@@ -48,7 +48,7 @@ export default function NameScreen() {
                             style={[styles.button, !name && styles.buttonDisabled]}
                             disabled={!name}
                             onPress={async () => {
-                                await AsyncStorage.setItem("userName", name.trim());
+                                await AsyncStorage.setItem("guestName", name.trim());
 
                                 const href = {
                                     pathname: "/test/question",

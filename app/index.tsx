@@ -21,12 +21,13 @@ export default function StartScreen() {
   const router = useRouter();
   const [currentLang, setCurrentLang] = useState<Lang>("ru");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isProfileActive, setIsProfileActive] = useState(false);
 
   const t = translations[currentLang];
 
   useEffect(() => {
     const loadPreferences = async () => {
-      const [savedLang, lastShortResult, isProfileActive] =
+      const [savedLang, lastShortResult, isProfileActiveValue] =
         await AsyncStorage.multiGet([
           "lang",
           "lastShortResult",
@@ -39,8 +40,10 @@ export default function StartScreen() {
           : "ru";
 
       setCurrentLang(resolvedLang);
+      const profileActive = isProfileActiveValue?.[1] === "true";
+      setIsProfileActive(profileActive);
 
-      if (lastShortResult?.[1] && isProfileActive?.[1] === "true") {
+      if (lastShortResult?.[1] && profileActive) {
         const shortResultHref = {
           pathname: "/result/short",
           params: { lang: resolvedLang },
@@ -62,6 +65,25 @@ export default function StartScreen() {
   const introHref = { pathname: "/intro", params: { lang: currentLang } } as unknown as Href;
   const providersHref = { pathname: "/auth/providers", params: { lang: currentLang } } as unknown as Href;
   const shortResultHref = { pathname: "/result/short", params: { lang: currentLang } } as unknown as Href;
+  const cooldownHref = { pathname: "/cooldown", params: { lang: currentLang } } as unknown as Href;
+
+  const handleStart = async () => {
+    const isActive = await AsyncStorage.getItem("isProfileActive");
+    if (isActive === "true") {
+      router.push(cooldownHref);
+      return;
+    }
+
+    const keys = await AsyncStorage.getAllKeys();
+    const answerKeys = keys.filter((key) => key.startsWith("answer_"));
+    await AsyncStorage.multiRemove([
+      ...answerKeys,
+      "guestShortResult",
+      "guestShortResultAt",
+      "guestName",
+    ]);
+    router.push(introHref);
+  };
 
   const handleProfileEnter = async () => {
     const isActive = await AsyncStorage.getItem("isProfileActive");
@@ -106,12 +128,7 @@ export default function StartScreen() {
 
       {/* низ */}
       <View style={styles.bottom}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            router.push(introHref);
-          }}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleStart}>
           <Text style={styles.buttonText}>{t.start}</Text>
         </TouchableOpacity>
 
@@ -119,7 +136,9 @@ export default function StartScreen() {
           style={styles.button}
           onPress={handleProfileEnter}
         >
-          <Text style={styles.buttonText}>{t.goToProfile}</Text>
+          <Text style={styles.buttonText}>
+            {isProfileActive ? t.enterProfile : t.goToProfile}
+          </Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>{t.disclaimer}</Text>

@@ -37,6 +37,7 @@ const pt = {
     registrationTertiary: "Voltar ao menu principal",
     registrationMicrocopy:
         "O cadastro é opcional.\nSomente Google ou Telegram. Sem assinaturas ou emails extras.",
+    saveResult: "Salvar meu resultado",
     providerGoogle: "Google",
     providerTelegram: "Telegram",
     loginTitle: "Entrar",
@@ -56,6 +57,10 @@ const pt = {
     shortError: "Erro ao obter o resultado",
     fullError: "Erro ao obter o resultado",
     loadingResult: "O resultado está a ser gerado. Tente novamente.",
+    cooldownTitle: "Pausa do teste",
+    cooldownBody: "Você só pode refazer o teste uma vez a cada 30 dias.",
+    cooldownRemaining: "Disponível em {days}d {hours}h.",
+    cooldownReady: "Você já pode fazer o teste novamente.",
 
     archetype: "Arquétipo",
     element: "Elemento",

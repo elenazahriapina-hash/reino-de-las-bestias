@@ -44,7 +44,9 @@ export default function ResultLoadingScreen() {
             setIsLoading(true);
             setError(null);
 
-            const name = (await AsyncStorage.getItem("userName")) ?? "";
+            const profileActive = (await AsyncStorage.getItem("isProfileActive")) === "true";
+            const nameKey = profileActive ? "userName" : "guestName";
+            const name = (await AsyncStorage.getItem(nameKey)) ?? "";
             const genderRaw = await AsyncStorage.getItem("gender");
 
             const gender: Gender =
@@ -71,13 +73,27 @@ export default function ResultLoadingScreen() {
             const response = await sendTestToBackend<ShortResponse>("short", payload);
             const shortResult = response.result;
 
-            await AsyncStorage.setItem("shortResult", JSON.stringify(shortResult));
-            await AsyncStorage.setItem("result_animal", shortResult.animal);
-            await AsyncStorage.setItem("result_element", shortResult.element);
-            await AsyncStorage.setItem("runId", shortResult.runId);
+            await AsyncStorage.multiSet([
+                ["result_animal", shortResult.animal],
+                ["result_element", shortResult.element],
+                ["runId", shortResult.runId],
+            ]);
+
+            if (profileActive) {
+                await AsyncStorage.multiSet([
+                    ["lastShortResult", JSON.stringify(shortResult)],
+                    ["lastShortResultAt", Date.now().toString()],
+                    ["lastTestAt", Date.now().toString()],
+                ]);
+            } else {
+                await AsyncStorage.multiSet([
+                    ["guestShortResult", JSON.stringify(shortResult)],
+                    ["guestShortResultAt", Date.now().toString()],
+                ]);
+            }
 
             const nextHref: Href = {
-                pathname: "/result/short",
+                pathname: profileActive ? "/result/short" : "/result/guest-short",
                 params: { lang: currentLang },
             };
             router.push(nextHref);
