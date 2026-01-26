@@ -56,6 +56,8 @@ export default function SettingsScreen() {
     const [isUpdatingShortResult, setIsUpdatingShortResult] = useState(false);
     const [updateError, setUpdateError] = useState<string | null>(null);
     const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [authProvider, setAuthProvider] = useState<string | null>(null);
+    const [authIdentifier, setAuthIdentifier] = useState<string | null>(null);
 
     const t = translations[currentLang];
 
@@ -67,6 +69,20 @@ export default function SettingsScreen() {
             }) as unknown as Href,
         [currentLang]
     );
+
+    const authInfo = useMemo(() => {
+        if (!authProvider || !authIdentifier) {
+            return null;
+        }
+        if (authProvider === "google") {
+            return { label: "email:", value: authIdentifier };
+        }
+        if (authProvider === "telegram") {
+            return { label: "Telegram:", value: authIdentifier };
+        }
+        return null;
+    }, [authIdentifier, authProvider]);
+
 
     const mainHref = useMemo(
         () =>
@@ -85,9 +101,11 @@ export default function SettingsScreen() {
 
     useEffect(() => {
         const loadSettings = async () => {
-            const [savedLang, savedName] = await AsyncStorage.multiGet([
+            const [savedLang, savedName, savedProvider, savedIdentifier] = await AsyncStorage.multiGet([
                 "lang",
                 "userName",
+                "authProvider",
+                "authIdentifier",
             ]);
 
             const langValue = savedLang?.[1];
@@ -98,6 +116,17 @@ export default function SettingsScreen() {
             const nameValue = savedName?.[1];
             if (nameValue) {
                 setNameInput(nameValue);
+            }
+
+
+            const providerValue = savedProvider?.[1];
+            if (providerValue) {
+                setAuthProvider(providerValue);
+            }
+
+            const identifierValue = savedIdentifier?.[1];
+            if (identifierValue) {
+                setAuthIdentifier(identifierValue);
             }
         };
 
@@ -251,6 +280,12 @@ export default function SettingsScreen() {
                         placeholder={t.namePlaceholder}
                         placeholderTextColor="#7F8790"
                     />
+                    {authInfo ? (
+                        <View style={settingsStyles.authInfo}>
+                            <Text style={settingsStyles.authLabel}>{authInfo.label}</Text>
+                            <Text style={settingsStyles.authValue}>{authInfo.value}</Text>
+                        </View>
+                    ) : null}
                     <TouchableOpacity
                         style={[startScreenStyles.button, settingsStyles.saveButton]}
                         onPress={handleSaveName}
@@ -339,6 +374,20 @@ const settingsStyles = StyleSheet.create({
     },
     saveButton: {
         marginTop: 16,
+    },
+    authInfo: {
+        marginTop: 12,
+        paddingHorizontal: 4,
+    },
+    authLabel: {
+        color: "#7F8790",
+        fontSize: 13,
+        textTransform: "none",
+    },
+    authValue: {
+        color: "#CFCFCF",
+        fontSize: 14,
+        marginTop: 4,
     },
     updateStatus: {
         marginTop: 12,
