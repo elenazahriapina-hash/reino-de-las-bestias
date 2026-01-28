@@ -3,7 +3,12 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#0E1116",
+        backgroundColor: "#0B1320",
+        paddingHorizontal: 24,
+    },
+    containerAlt: {
+        flex: 1,
+        backgroundColor: "#0F1A14",
         paddingHorizontal: 24,
     },
 
@@ -14,7 +19,7 @@ export const styles = StyleSheet.create({
 
     title: {
         fontSize: 30,
-        color: "#E6E6E6",
+        color: "#F0F2F4",
         fontWeight: "600",
         marginBottom: 32,
         textAlign: "center",
@@ -22,15 +27,15 @@ export const styles = StyleSheet.create({
 
     quote: {
         fontSize: 16,
-        color: "#C89B3C",
-        lineHeight: 24,
+        color: "#A3AAB5",
+        lineHeight: 26,
         textAlign: "center",
     },
 
     body: {
         fontSize: 16,
-        color: "#CFCFCF",
-        lineHeight: 24,
+        color: "#A3AAB5",
+        lineHeight: 26,
         textAlign: "center",
     },
 
@@ -48,10 +53,10 @@ export const styles = StyleSheet.create({
     },
 
     buttonText: {
-        color: "#E6E6E6",
+        color: "#E4E7EB",
         fontSize: 16,
         fontWeight: "600",
-        letterSpacing: 1,
+        letterSpacing: 0.2,
     },
 
     buttonSecondary: {
@@ -61,27 +66,27 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 64,
         marginBottom: 12,
         borderWidth: 1,
-        borderColor: "#2A2F36",
+        borderColor: "#26344A",
     },
     buttonTertiary: {
         paddingVertical: 8,
     },
     buttonTertiaryText: {
-        color: "#C89B3C",
+        color: "#9AA6B2",
         fontSize: 14,
         fontWeight: "600",
         letterSpacing: 0.5,
     },
     microcopy: {
         fontSize: 12,
-        color: "#7F8790",
+        color: "#7E8794",
         textAlign: "center",
         marginBottom: 20,
     },
 
     subtitle: {
         fontSize: 12,
-        color: "#777",
+        color: "#7E8794",
         textAlign: "center",
     },
 
@@ -93,13 +98,13 @@ export const styles = StyleSheet.create({
     },
 
     langBtn: {
-        color: "#777",
+        color: "#7E8794",
         fontSize: 14,
         letterSpacing: 1,
     },
 
     langActive: {
-        color: "#C89B3C",
+        color: "#3A7BD5",
         fontWeight: "600",
     },
 
@@ -111,21 +116,21 @@ export const styles = StyleSheet.create({
     },
 
     langCurrent: {
-        color: "#C89B3C",
+        color: "#A3AAB5",
         fontSize: 14,
         letterSpacing: 1,
     },
 
     langMenu: {
         marginTop: 8,
-        backgroundColor: "#1A1E24",
+        backgroundColor: "#131C2E",
         borderRadius: 8,
         paddingVertical: 6,
         paddingHorizontal: 12,
     },
 
     langItem: {
-        color: "#E6E6E6",
+        color: "#E4E7EB",
         fontSize: 14,
         paddingVertical: 6,
     },
@@ -147,11 +152,11 @@ export const styles = StyleSheet.create({
 
     input: {
         width: "100%",
-        backgroundColor: "#1A1E24",
+        backgroundColor: "#131C2E",
         borderRadius: 12,
         paddingHorizontal: 14,
         paddingVertical: 12,
-        color: "#E6E6E6",          // ✅ чтобы текст был виден
+        color: "#E4E7EB",         // ✅ чтобы текст был виден
         fontSize: 16,
         marginTop: 16,
     },
@@ -159,12 +164,12 @@ export const styles = StyleSheet.create({
     textarea: {
         width: "100%",
         minHeight: 120,
-        backgroundColor: "#1A1E24",
+        backgroundColor: "#131C2E",
         borderRadius: 12,
         paddingHorizontal: 14,
         paddingTop: 12,
         paddingBottom: 12,
-        color: "#E6E6E6",          // ✅ чтобы текст был виден   
+        color: "#E4E7EB",           // ✅ чтобы текст был виден   
         fontSize: 16,
         marginTop: 16,
         textAlignVertical: "top",  // ✅ Android (не мешает iOS)  

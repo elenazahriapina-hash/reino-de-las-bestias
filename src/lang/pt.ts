@@ -5,7 +5,7 @@ const pt = {
     disclaimer: "Não é um teste. Não é um diagnóstico. Não é um jogo.",
 
     nameTitle: "Como devemos te chamar?",
-    nameHint: "Digite seu nome ou apelido — é assim que vamos te chamar. Você pode alterar depois no perfil.",
+    nameHint: "Digite seu nome ou apelido — é assim que vamos te chamar.",
     namePlaceholder: "Seu nome",
     ok: "OK",
 

@@ -107,7 +107,7 @@ export default function ResultLoadingScreen() {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerAlt}>
             <View style={styles.center}>
                 <Text style={styles.title}>{t.loadingTitle}</Text>
                 <Text style={styles.quote}>{t.loadingText}</Text>
@@ -116,7 +116,7 @@ export default function ResultLoadingScreen() {
                     <ActivityIndicator
                         style={{ marginTop: 24 }}
                         size="large"
-                        color="#C89B3C"
+                        color="#3A7BD5"
                     />
                 ) : null}
             </View>

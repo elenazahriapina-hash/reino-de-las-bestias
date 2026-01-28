@@ -142,7 +142,7 @@ export default function FullResultScreen() {
                     { justifyContent: "center", paddingHorizontal: 24 },
                 ]}
             >
-                <ActivityIndicator size="large" color="#C89B3C" />
+                <ActivityIndicator size="large" color="#3A7BD5" />
                 <Text style={[styles.microcopy, { marginTop: 16, textAlign: "center" }]}>
                     {t.fullLoadingTitle}
                 </Text>
@@ -205,7 +205,7 @@ export default function FullResultScreen() {
                         style={{
                             fontSize: 16,
                             lineHeight: 26,
-                            color: "#1e1616ff",
+                            color: "#E4E7EB",
                             textAlign: "left",
                         }}
                     >

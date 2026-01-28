@@ -25,14 +25,14 @@ export default function ResultLoadingFullScreen() {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerAlt}>
             <View style={styles.center}>
                 <Text style={styles.title}>{t.loadingFullTitle}</Text>
                 <Text style={styles.quote}>{t.loadingFullText}</Text>
                 <ActivityIndicator
                     style={{ marginTop: 24 }}
                     size="large"
-                    color="#C89B3C"
+                    color="#3A7BD5"
                 />
             </View>
             <View style={styles.bottom}>

@@ -87,7 +87,7 @@ export default function QuestionScreen() {
                                             key={key}
                                             style={[
                                                 styles.button,
-                                                answer === key && { backgroundColor: "#C89B3C" },
+                                                answer === key && { backgroundColor: "#5C7F5B" },
                                             ]}
                                             onPress={() => setAnswer(key)}
                                         >
@@ -105,7 +105,7 @@ export default function QuestionScreen() {
                             <TextInput
                                 style={styles.textarea}
                                 placeholder={question.placeholder[currentLang]}
-                                placeholderTextColor="#999"
+                                placeholderTextColor="#7E8794"
                                 value={answer}
                                 onChangeText={(text) => {
                                     if (question.inputType === "number") {

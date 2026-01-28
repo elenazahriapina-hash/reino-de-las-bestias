@@ -37,14 +37,14 @@ export default function PaywallSuccessScreen() {
 
     if (!ready) {
         return (
-            <View style={[styles.container, { justifyContent: "center" }]}>
-                <ActivityIndicator size="large" color="#C89B3C" />
+            <View style={[styles.containerAlt, { justifyContent: "center" }]}>
+                <ActivityIndicator size="large" color="#3A7BD5" />
             </View>
         );
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerAlt}>
             <View style={styles.center}>
                 <Text style={styles.title}>{t.purchaseSuccessTitle}</Text>
                 <Text style={styles.body}>{t.purchaseSuccessBody}</Text>
@@ -87,7 +87,7 @@ export default function PaywallSuccessScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonTertiaryText}>{t.settings}</Text>
+                    <Text style={styles.buttonTertiaryText}>{t.goToProfile}</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -37,8 +37,8 @@ export default function PaywallScreen() {
 
     if (!ready) {
         return (
-            <View style={[styles.container, { justifyContent: "center" }]}>
-                <ActivityIndicator size="large" color="#C89B3C" />
+            <View style={[styles.containerAlt, { justifyContent: "center" }]}>
+                <ActivityIndicator size="large" color="#3A7BD5" />
             </View>
         );
     }

@@ -56,7 +56,7 @@ export default function ProfileCreatedScreen() {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerAlt}>
             <View style={styles.center}>
                 <Text style={styles.title}>{t.successTitle}</Text>
                 <Text style={styles.body}>{t.successBody}</Text>

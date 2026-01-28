@@ -35,7 +35,7 @@ export default function NameScreen() {
                         <TextInput
                             style={styles.input}
                             placeholder={t.namePlaceholder}
-                            placeholderTextColor="#999"
+                            placeholderTextColor="#7E8794"
                             value={name}
                             onChangeText={setName}
                             returnKeyType="done"

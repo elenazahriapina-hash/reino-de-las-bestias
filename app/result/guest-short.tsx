@@ -112,7 +112,7 @@ export default function GuestShortResultScreen() {
     if (loading) {
         return (
             <View style={[styles.container, { justifyContent: "center" }]}>
-                <ActivityIndicator size="large" color="#C89B3C" />
+                <ActivityIndicator size="large" color="#3A7BD5" />
             </View>
         );
     }

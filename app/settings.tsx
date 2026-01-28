@@ -296,7 +296,7 @@ export default function SettingsScreen() {
                         value={nameInput}
                         onChangeText={setNameInput}
                         placeholder={t.namePlaceholder}
-                        placeholderTextColor="#7F8790"
+                        placeholderTextColor="#7E8794"
                     />
                     {authInfo ? (
                         <View style={settingsStyles.authInfo}>
@@ -313,7 +313,7 @@ export default function SettingsScreen() {
                     <View style={settingsStyles.updateStatus}>
                         {isUpdatingShortResult ? (
                             <View style={settingsStyles.updateRow}>
-                                <ActivityIndicator size="small" color="#C89B3C" />
+                                <ActivityIndicator size="small" color="#3A7BD5" />
                                 <Text style={settingsStyles.updateText}>{t.updating}</Text>
                             </View>
                         ) : updateError ? (
@@ -361,7 +361,7 @@ const settingsStyles = StyleSheet.create({
         marginBottom: 32,
     },
     sectionTitle: {
-        color: "#E6E6E6",
+        color: "#F0F2F4",
         fontSize: 16,
         fontWeight: "600",
         marginBottom: 12,
@@ -372,22 +372,22 @@ const settingsStyles = StyleSheet.create({
         gap: 12,
     },
     languageButton: {
-        borderColor: "#2A2F36",
+        borderColor: "#26344A",
         borderRadius: 12,
         borderWidth: 1,
         paddingHorizontal: 12,
         paddingVertical: 8,
     },
     languageButtonActive: {
-        borderColor: "#C89B3C",
+        borderColor: "#3A7BD5",
     },
     languageText: {
-        color: "#CFCFCF",
+        color: "#A3AAB5",
         fontSize: 14,
         letterSpacing: 1,
     },
     languageTextActive: {
-        color: "#C89B3C",
+        color: "#3A7BD5",
         fontWeight: "600",
     },
     saveButton: {
@@ -398,12 +398,12 @@ const settingsStyles = StyleSheet.create({
         paddingHorizontal: 4,
     },
     authLabel: {
-        color: "#7F8790",
+        color: "#7E8794",
         fontSize: 13,
         textTransform: "none",
     },
     authValue: {
-        color: "#CFCFCF",
+        color: "#E4E7EB",
         fontSize: 14,
         marginTop: 4,
     },
@@ -417,15 +417,15 @@ const settingsStyles = StyleSheet.create({
         gap: 8,
     },
     updateText: {
-        color: "#7F8790",
+        color: "#7E8794",
         fontSize: 13,
     },
     updateError: {
-        color: "#C97B7B",
+        color: "#D58B7A",
         fontSize: 13,
     },
     updateSuccess: {
-        color: "#7FBF8E",
+        color: "#7FAF8A",
         fontSize: 13,
     },
 });

@@ -5,7 +5,7 @@ const en = {
     disclaimer: "Not a test. Not a diagnosis. Not a game.",
 
     nameTitle: "How should we call you?",
-    nameHint: "Enter a name or nickname — we’ll use it to address you. You can change it later in your profile.",
+    nameHint: "Enter a name or nickname — we’ll use it to address you.",
     namePlaceholder: "Your name",
     ok: "OK",
 
