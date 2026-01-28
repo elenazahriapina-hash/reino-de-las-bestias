@@ -52,7 +52,7 @@ export default function RegistrationEntryScreen() {
                     style={styles.buttonSecondary}
                     onPress={() => router.push(loginHref)}
                 >
-                    <Text style={styles.buttonText}>{t.registrationSecondary}</Text>
+                    <Text style={styles.buttonSecondaryText}>{t.registrationSecondary}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

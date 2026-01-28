@@ -22,13 +22,14 @@ export default function IntroScreen() {
             <ScrollView contentContainerStyle={introStyles.scrollContent}>
                 <Text style={startScreenStyles.title}>{t.introTitle}</Text>
 
-                <Text style={introStyles.paragraph}>{t.introP1}</Text>
-                <Text style={introStyles.paragraph}>{t.introP2}</Text>
-
-                <Text style={introStyles.paragraph}>{t.introP3}</Text>
-                <Text style={introStyles.bullet}>{t.introB1}</Text>
-                <Text style={introStyles.bullet}>{t.introB2}</Text>
-                <Text style={introStyles.bullet}>{t.introB3}</Text>
+                <View style={[startScreenStyles.surface, introStyles.surfaceSpacing]}>
+                    <Text style={introStyles.paragraph}>{t.introP1}</Text>
+                    <Text style={introStyles.paragraph}>{t.introP2}</Text>
+                    <Text style={introStyles.paragraph}>{t.introP3}</Text>
+                    <Text style={introStyles.bullet}>{t.introB1}</Text>
+                    <Text style={introStyles.bullet}>{t.introB2}</Text>
+                    <Text style={introStyles.bullet}>{t.introB3}</Text>
+                </View>
 
                 <View style={introStyles.buttonWrapper}>
                     <TouchableOpacity
@@ -55,16 +56,23 @@ const introStyles = StyleSheet.create({
         paddingTop: 120,
         paddingBottom: 60,
     },
+    surfaceSpacing: {
+        marginBottom: 24,
+    },
     paragraph: {
         fontSize: 16,
-        color: "#A3AAB5",
+        color: "#E4E7EB",
+        fontFamily: "Manrope-Regular",
         lineHeight: 26,
         textAlign: "center",
         marginBottom: 12,
+        maxWidth: 520,
+        alignSelf: "center",
     },
     bullet: {
         fontSize: 16,
-        color: "#E4E7EB",
+        color: "#DDE3EA",
+        fontFamily: "Manrope-Medium",
         lineHeight: 26,
         textAlign: "left",
         marginBottom: 8,

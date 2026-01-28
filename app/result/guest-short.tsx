@@ -119,7 +119,7 @@ export default function GuestShortResultScreen() {
 
     return (
         <ScrollView
-            style={{ flex: 1 }}
+            style={styles.screen}
             contentContainerStyle={{
                 paddingHorizontal: 20,
                 paddingBottom: 40,

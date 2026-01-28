@@ -6,9 +6,13 @@ export const styles = StyleSheet.create({
         backgroundColor: "#0B1320",
         paddingHorizontal: 24,
     },
+    screen: {
+        flex: 1,
+        backgroundColor: "#0B1320",
+    },
     containerAlt: {
         flex: 1,
-        backgroundColor: "#0F1A14",
+        backgroundColor: "#0D1624",
         paddingHorizontal: 24,
     },
 
@@ -20,23 +24,32 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         color: "#F0F2F4",
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
+        lineHeight: 40,
         marginBottom: 32,
         textAlign: "center",
+        maxWidth: 520,
+        alignSelf: "center",
     },
 
     quote: {
         fontSize: 16,
-        color: "#A3AAB5",
+        color: "#E4E7EB",
+        fontFamily: "Manrope-Regular",
         lineHeight: 26,
         textAlign: "center",
+        maxWidth: 520,
+        alignSelf: "center",
     },
 
     body: {
         fontSize: 16,
-        color: "#A3AAB5",
+        color: "#E4E7EB",
+        fontFamily: "Manrope-Regular",
         lineHeight: 26,
         textAlign: "center",
+        maxWidth: 520,
+        alignSelf: "center",
     },
 
     bottom: {
@@ -45,41 +58,58 @@ export const styles = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: "#2A2F36",
-        borderRadius: 28,
+        backgroundColor: "#FF6B1A",
+        borderRadius: 20,
+        minHeight: 52,
         paddingVertical: 14,
-        paddingHorizontal: 64,
+        paddingHorizontal: 48,
         marginBottom: 20,
+        alignItems: "center",
+        justifyContent: "center",
     },
 
     buttonText: {
-        color: "#E4E7EB",
+        color: "#0B1320",
         fontSize: 16,
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
+        lineHeight: 22,
         letterSpacing: 0.2,
     },
 
     buttonSecondary: {
-        backgroundColor: "transparent",
-        borderRadius: 28,
+        backgroundColor: "#131C2E",
+        borderRadius: 20,
+        minHeight: 52,
         paddingVertical: 14,
-        paddingHorizontal: 64,
+        paddingHorizontal: 48,
         marginBottom: 12,
         borderWidth: 1,
         borderColor: "#26344A",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonSecondaryText: {
+        color: "#E4E7EB",
+        fontSize: 16,
+        fontFamily: "Manrope-SemiBold",
+        lineHeight: 22,
     },
     buttonTertiary: {
         paddingVertical: 8,
+        alignItems: "center",
     },
     buttonTertiaryText: {
         color: "#9AA6B2",
         fontSize: 14,
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
+        lineHeight: 20,
         letterSpacing: 0.5,
     },
     microcopy: {
         fontSize: 12,
         color: "#7E8794",
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
         textAlign: "center",
         marginBottom: 20,
     },
@@ -87,6 +117,8 @@ export const styles = StyleSheet.create({
     subtitle: {
         fontSize: 12,
         color: "#7E8794",
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
         textAlign: "center",
     },
 
@@ -100,12 +132,14 @@ export const styles = StyleSheet.create({
     langBtn: {
         color: "#7E8794",
         fontSize: 14,
+        fontFamily: "Manrope-Medium",
+        lineHeight: 20,
         letterSpacing: 1,
     },
 
     langActive: {
         color: "#3A7BD5",
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
     },
 
     langWrapper: {
@@ -118,6 +152,8 @@ export const styles = StyleSheet.create({
     langCurrent: {
         color: "#A3AAB5",
         fontSize: 14,
+        fontFamily: "Manrope-Medium",
+        lineHeight: 20,
         letterSpacing: 1,
     },
 
@@ -132,6 +168,8 @@ export const styles = StyleSheet.create({
     langItem: {
         color: "#E4E7EB",
         fontSize: 14,
+        fontFamily: "Manrope-Medium",
+        lineHeight: 20,
         paddingVertical: 6,
     },
 
@@ -158,6 +196,8 @@ export const styles = StyleSheet.create({
         paddingVertical: 12,
         color: "#E4E7EB",         // ✅ чтобы текст был виден
         fontSize: 16,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 22,
         marginTop: 16,
     },
 
@@ -171,8 +211,38 @@ export const styles = StyleSheet.create({
         paddingBottom: 12,
         color: "#E4E7EB",           // ✅ чтобы текст был виден   
         fontSize: 16,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 26,
         marginTop: 16,
         textAlignVertical: "top",  // ✅ Android (не мешает iOS)  
+    },
+    answerButton: {
+        backgroundColor: "#131C2E",
+        borderRadius: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        borderWidth: 1,
+        borderColor: "#26344A",
+        marginBottom: 12,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    answerButtonSelected: {
+        backgroundColor: "#1C2A42",
+        borderColor: "#5C7F5B",
+    },
+    answerButtonText: {
+        color: "#E4E7EB",
+        fontSize: 16,
+        fontFamily: "Manrope-Medium",
+        lineHeight: 22,
+        textAlign: "center",
+    },
+
+    surface: {
+        backgroundColor: "#131C2E",
+        borderRadius: 20,
+        padding: 20,
     },
 
 });

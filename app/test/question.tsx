@@ -86,12 +86,12 @@ export default function QuestionScreen() {
                                         <TouchableOpacity
                                             key={key}
                                             style={[
-                                                styles.button,
-                                                answer === key && { backgroundColor: "#5C7F5B" },
+                                                styles.answerButton,
+                                                answer === key && styles.answerButtonSelected,
                                             ]}
                                             onPress={() => setAnswer(key)}
                                         >
-                                            <Text style={styles.buttonText}>
+                                            <Text style={styles.answerButtonText}>
                                                 {key}: {value}
                                             </Text>
                                         </TouchableOpacity>

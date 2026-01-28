@@ -88,7 +88,7 @@ export default function CooldownScreen() {
                     <Text style={styles.buttonText}>{t.backToResult}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonSecondary} onPress={() => router.push(settingsHref)}>
-                    <Text style={styles.buttonText}>{t.settings}</Text>
+                    <Text style={styles.buttonSecondaryText}>{t.settings}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonTertiary} onPress={handleGoToMain}>
                     <Text style={styles.buttonTertiaryText}>{t.goToMain}</Text>

@@ -129,7 +129,7 @@ export default function ShortResultScreen() {
 
     return (
         <ScrollView
-            style={{ flex: 1 }}
+            style={styles.screen}
             contentContainerStyle={{
                 paddingHorizontal: 20,
                 paddingBottom: 40,
@@ -212,7 +212,7 @@ export default function ShortResultScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.settings}</Text>
+                    <Text style={styles.buttonSecondaryText}>{t.settings}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

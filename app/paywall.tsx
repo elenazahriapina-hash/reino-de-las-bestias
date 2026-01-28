@@ -75,7 +75,7 @@ export default function PaywallScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.later}</Text>
+                    <Text style={styles.buttonSecondaryText}>{t.later}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity

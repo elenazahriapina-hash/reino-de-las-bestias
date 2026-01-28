@@ -167,7 +167,7 @@ export default function FullResultScreen() {
 
     return (
         <ScrollView
-            style={{ flex: 1 }}
+            style={styles.screen}
             contentContainerStyle={{
                 paddingHorizontal: 24,
                 paddingTop: 32,
@@ -190,7 +190,7 @@ export default function FullResultScreen() {
                             style={styles.buttonSecondary}
                             onPress={() => router.push(shortResultHref)}
                         >
-                            <Text style={styles.buttonText}>{t.backToResult}</Text>
+                            <Text style={styles.buttonSecondaryText}>{t.backToResult}</Text>
                         </TouchableOpacity>
                     </View>
                 </>
@@ -201,16 +201,19 @@ export default function FullResultScreen() {
                             {t.fullUpdating ?? t.updating}
                         </Text>
                     ) : null}
-                    <Text
-                        style={{
-                            fontSize: 16,
-                            lineHeight: 26,
-                            color: "#E4E7EB",
-                            textAlign: "left",
-                        }}
-                    >
-                        {sanitizeFullText(result.text)}
-                    </Text>
+                    <View style={[styles.surface, { marginTop: 12, marginBottom: 24 }]}>
+                        <Text
+                            style={{
+                                fontSize: 16,
+                                lineHeight: 26,
+                                color: "#E4E7EB",
+                                fontFamily: "Manrope-Regular",
+                                textAlign: "left",
+                            }}
+                        >
+                            {sanitizeFullText(result.text)}
+                        </Text>
+                    </View>
                     {offlineNotice ? (
                         <Text style={styles.microcopy}>{t.offlineHint}</Text>
                     ) : null}
@@ -225,7 +228,7 @@ export default function FullResultScreen() {
                         style={styles.buttonSecondary}
                         onPress={() => router.push(shortResultHref)}
                     >
-                        <Text style={styles.buttonText}>{t.backToResult}</Text>
+                        <Text style={styles.buttonSecondaryText}>{t.backToResult}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity

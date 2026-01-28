@@ -329,7 +329,7 @@ export default function SettingsScreen() {
                         style={startScreenStyles.buttonSecondary}
                         onPress={handleLogout}
                     >
-                        <Text style={startScreenStyles.buttonText}>{t.logoutProfile}</Text>
+                        <Text style={startScreenStyles.buttonSecondaryText}>{t.logoutProfile}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -338,7 +338,7 @@ export default function SettingsScreen() {
                         style={startScreenStyles.buttonSecondary}
                         onPress={() => router.push(shortResultHref)}
                     >
-                        <Text style={startScreenStyles.buttonText}>{t.backToResult}</Text>
+                        <Text style={startScreenStyles.buttonSecondaryText}>{t.backToResult}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={startScreenStyles.buttonTertiary}
@@ -363,7 +363,8 @@ const settingsStyles = StyleSheet.create({
     sectionTitle: {
         color: "#F0F2F4",
         fontSize: 16,
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
+        lineHeight: 22,
         marginBottom: 12,
     },
     languageRow: {
@@ -384,11 +385,13 @@ const settingsStyles = StyleSheet.create({
     languageText: {
         color: "#A3AAB5",
         fontSize: 14,
+        fontFamily: "Manrope-Medium",
+        lineHeight: 20,
         letterSpacing: 1,
     },
     languageTextActive: {
         color: "#3A7BD5",
-        fontWeight: "600",
+        fontFamily: "Manrope-SemiBold",
     },
     saveButton: {
         marginTop: 16,
@@ -400,11 +403,15 @@ const settingsStyles = StyleSheet.create({
     authLabel: {
         color: "#7E8794",
         fontSize: 13,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
         textTransform: "none",
     },
     authValue: {
         color: "#E4E7EB",
         fontSize: 14,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 20,
         marginTop: 4,
     },
     updateStatus: {
@@ -419,13 +426,19 @@ const settingsStyles = StyleSheet.create({
     updateText: {
         color: "#7E8794",
         fontSize: 13,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
     },
     updateError: {
         color: "#D58B7A",
         fontSize: 13,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
     },
     updateSuccess: {
         color: "#7FAF8A",
         fontSize: 13,
+        fontFamily: "Manrope-Regular",
+        lineHeight: 18,
     },
 });

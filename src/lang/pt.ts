@@ -73,7 +73,7 @@ const pt = {
 
     profileEnter: "Entrar no perfil",
     enterProfile: "Entrar no perfil",
-    introTitle: "🧠 Reino das Bestas",
+    introTitle: "👑Reino das Bestas",
     introP1: "Descubra seu arquétipo. Veja a si mesmo de fora.",
     introP2:
         "Cada pessoa mistura instinto, estratégia e um elemento. Nós traduzimos isso em imagens claras — 24 feras × 4 elementos.",

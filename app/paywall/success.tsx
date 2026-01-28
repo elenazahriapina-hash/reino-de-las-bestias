@@ -74,7 +74,7 @@ export default function PaywallSuccessScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.backToResult}</Text>
+                    <Text style={styles.buttonSecondaryText}>{t.backToResult}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
