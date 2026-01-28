@@ -19,6 +19,7 @@ import ru from "../../src/lang/ru";
 import { sendTestToBackend, type FullResponse } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
 import type { Gender } from "../../src/utils/animals";
+import { sanitizeFullText } from "../../src/utils/text";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
@@ -36,9 +37,11 @@ export default function FullResultScreen() {
     const [result, setResult] = useState<FullResult | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [offlineNotice, setOfflineNotice] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     const loadFullResult = useCallback(async () => {
         setLoading(true);
+        setIsRefreshing(false);
         let cachedResult: FullResult | null = null;
         try {
             setError(null);
@@ -60,6 +63,7 @@ export default function FullResultScreen() {
                     setResult(parsedResult);
                     cachedResult = parsedResult;
                     setLoading(false);
+                    setIsRefreshing(true);
                 } catch (parseError) {
                     console.warn("Failed to parse cached full result", parseError);
                 }
@@ -100,6 +104,7 @@ export default function FullResultScreen() {
             const response = await sendTestToBackend("full", payload);
 
             setResult(response.result);
+            setIsRefreshing(false);
             setOfflineNotice(false);
             await AsyncStorage.setItem(
                 "lastFullResult",
@@ -117,6 +122,7 @@ export default function FullResultScreen() {
                 setError(t.fullOfflineTitle ?? t.fullError);
             }
         } finally {
+            setIsRefreshing(false);
             if (!cachedResult) {
                 setLoading(false);
             }
@@ -130,8 +136,16 @@ export default function FullResultScreen() {
 
     if (loading) {
         return (
-            <View style={[styles.container, { justifyContent: "center" }]}>
+            <View
+                style={[
+                    styles.container,
+                    { justifyContent: "center", paddingHorizontal: 24 },
+                ]}
+            >
                 <ActivityIndicator size="large" color="#C89B3C" />
+                <Text style={[styles.microcopy, { marginTop: 16, textAlign: "center" }]}>
+                    {t.fullLoadingTitle}
+                </Text>
             </View>
         );
     }
@@ -182,6 +196,11 @@ export default function FullResultScreen() {
                 </>
             ) : result ? (
                 <>
+                    {isRefreshing ? (
+                        <Text style={styles.microcopy}>
+                            {t.fullUpdating ?? t.updating}
+                        </Text>
+                    ) : null}
                     <Text
                         style={{
                             fontSize: 16,
@@ -190,7 +209,7 @@ export default function FullResultScreen() {
                             textAlign: "left",
                         }}
                     >
-                        {result.text}
+                        {sanitizeFullText(result.text)}
                     </Text>
                     {offlineNotice ? (
                         <Text style={styles.microcopy}>{t.offlineHint}</Text>

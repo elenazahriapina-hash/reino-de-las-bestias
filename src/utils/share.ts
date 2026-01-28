@@ -97,10 +97,16 @@ export function formatArchetypeLine(
     lang: Lang,
     animalCode: AnimalCode,
     elementCode: ElementRu,
-    genderForm?: Gender
+    genderForm?: Gender,
+    options?: { includePreposition?: boolean }
 ) {
     const animal = getLocalizedAnimalName(lang, animalCode, genderForm);
     const element = getLocalizedElementName(lang, elementCode);
+
+    if (options?.includePreposition && lang !== "ru") {
+        const preposition = lang === "en" ? "of" : "de";
+        return `${animal} ${preposition} ${element}`;
+    }
 
     return `${animal} ${element}`;
 }
@@ -117,10 +123,13 @@ export function buildShareMessage(options: {
         lang,
         animalCode,
         elementCode,
-        genderForm
+        genderForm,
+        { includePreposition: true }
     );
+    const intro = translations[lang]?.shareIAm ?? "";
     const prompt = translations[lang]?.shareWhoAreYou ?? "";
-    const lines = [archetypeLine, prompt].filter(Boolean);
+    const lineOne = intro ? `${intro} ${archetypeLine}.` : archetypeLine;
+    const lines = [lineOne, prompt].filter(Boolean);
 
     if (appUrl) {
         lines.push(appUrl);
