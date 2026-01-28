@@ -42,8 +42,30 @@ export default function FullResultScreen() {
 
     useEffect(() => {
         const loadFullResult = async () => {
+            let hasCachedResult = false;
             try {
                 setError(null);
+
+                const hasAccess = (await AsyncStorage.getItem("hasFullAccess")) === "true";
+                if (!hasAccess) {
+                    router.replace({
+                        pathname: "/paywall",
+                        params: { lang: currentLang },
+                    } as unknown as Href);
+                    return;
+                }
+
+                const cached = await AsyncStorage.getItem("lastFullResult");
+                if (cached) {
+                    try {
+                        const cachedResult = JSON.parse(cached) as FullResponse["result"];
+                        setText(cachedResult.text);
+                        hasCachedResult = true;
+                        setLoading(false);
+                    } catch (parseError) {
+                        console.warn("Failed to parse cached full result", parseError);
+                    }
+                }
 
                 const name = (await AsyncStorage.getItem("userName")) ?? "";
                 const gender = await AsyncStorage.getItem("gender");
@@ -53,8 +75,10 @@ export default function FullResultScreen() {
                 const runId = await AsyncStorage.getItem("runId");
 
                 if (!animal || !element || !runId) {
-                    setError(t.fullError);
-                    setLoading(false);
+                    if (!hasCachedResult) {
+                        setError(t.fullError);
+                        setLoading(false);
+                    }
                     return;
                 }
 
@@ -92,17 +116,23 @@ export default function FullResultScreen() {
                     "lastFullResult",
                     JSON.stringify(response.result)
                 );
+                await AsyncStorage.setItem(
+                    "lastFullResultAt",
+                    new Date().toISOString()
+                );
 
             } catch (e: any) {
                 console.error("Ошибка получения full-результата", e);
-                setError(t.fullError);
+                if (!hasCachedResult) {
+                    setError(t.fullError);
+                }
             } finally {
                 setLoading(false);
             }
         };
 
         loadFullResult();
-    }, [lang]);
+    }, [currentLang, router, t.fullError]);
 
     if (loading) {
         return (

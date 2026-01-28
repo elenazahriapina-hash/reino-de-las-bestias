@@ -112,8 +112,8 @@ const en = {
     shareTemplate: "My archetype is {archetype} · {element}. What about yours?",
     shareError: "Could not share the result",
 
-    detailedDescriptionCta: "Get detailed description",
-    viewFullVersion: "View full version",
+    getDetailedDescription: "Get detailed description",
+    viewFull: "View full version",
     backToResult: "Back to result",
     backToProfile: "Back to profile",
     exitToMain: "Exit to main",
@@ -121,8 +121,13 @@ const en = {
     switchProfile: "Switch profile",
     goToMain: "Go to main screen",
 
-    paywallTitle: "Full breakdown",
-    paywallSubtitle: "Payment screen (stub)",
+    paywallTitle: "Detailed description",
+    paywallBody:
+        "If you want to go deeper, the detailed description reveals more facets of your archetype.",
+    purchaseSuccessTitle: "Done",
+    purchaseSuccessBody:
+        "The detailed description is unlocked. You can return to it anytime.",
+    done: "Done",
 
 };
 

@@ -112,8 +112,8 @@ const ru = {
   shareTemplate: "Мой архетип — {archetype} · {element}, а твой какой?",
   shareError: "Не удалось поделиться результатом",
 
-  detailedDescriptionCta: "Получить подробное описание",
-  viewFullVersion: "Смотреть полную версию",
+  getDetailedDescription: "Получить подробное описание",
+  viewFull: "Посмотреть полную версию",
   backToResult: "Вернуться к результату",
   backToProfile: "Вернуться в профиль",
   exitToMain: "Выйти на главный экран",
@@ -121,8 +121,13 @@ const ru = {
   switchProfile: "Сменить профиль",
   goToMain: "На главный экран",
 
-  paywallTitle: "Полный разбор",
-  paywallSubtitle: "Экран оплаты (заглушка)",
+  paywallTitle: "Подробное описание",
+  paywallBody:
+    "Если хочешь пойти глубже — подробное описание раскрывает больше граней твоего архетипа.",
+  purchaseSuccessTitle: "Готово",
+  purchaseSuccessBody:
+    "Подробное описание открыто. Ты можешь вернуться к нему в любое время.",
+  done: "Готово",
 
 
 };

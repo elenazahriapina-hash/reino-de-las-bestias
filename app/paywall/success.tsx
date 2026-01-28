@@ -2,16 +2,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
-import en from "../src/lang/en";
-import es from "../src/lang/es";
-import pt from "../src/lang/pt";
-import ru from "../src/lang/ru";
-import { styles } from "../src/styles/startScreenStyles";
+
+import en from "../../src/lang/en";
+import es from "../../src/lang/es";
+import pt from "../../src/lang/pt";
+import ru from "../../src/lang/ru";
+import { styles } from "../../src/styles/startScreenStyles";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
-export default function PaywallScreen() {
-
+export default function PaywallSuccessScreen() {
     const router = useRouter();
     const { lang } = useLocalSearchParams<{ lang?: Lang }>();
     const translations = { ru, en, es, pt };
@@ -46,23 +46,22 @@ export default function PaywallScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.center}>
-                <Text style={styles.title}>{t.paywallTitle}</Text>
-                <Text style={styles.body}>{t.paywallBody}</Text>
+                <Text style={styles.title}>{t.purchaseSuccessTitle}</Text>
+                <Text style={styles.body}>{t.purchaseSuccessBody}</Text>
             </View>
 
             <View style={styles.bottom}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={async () => {
-                        await AsyncStorage.setItem("hasFullAccess", "true");
+                    onPress={() => {
                         const href = {
-                            pathname: "/paywall/success",
+                            pathname: "/result/full",
                             params: { lang: currentLang },
                         } as unknown as Href;
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.getDetailedDescription}</Text>
+                    <Text style={styles.buttonText}>{t.viewFull}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -75,21 +74,20 @@ export default function PaywallScreen() {
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonText}>{t.later}</Text>
+                    <Text style={styles.buttonText}>{t.backToResult}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.buttonTertiary}
-                    onPress={async () => {
-                        await AsyncStorage.setItem("skipAutoHubOnce", "true");
+                    onPress={() => {
                         const href = {
-                            pathname: "/",
+                            pathname: "/settings",
                             params: { lang: currentLang },
                         } as unknown as Href;
                         router.push(href);
                     }}
                 >
-                    <Text style={styles.buttonTertiaryText}>{t.goToMain}</Text>
+                    <Text style={styles.buttonTertiaryText}>{t.settings}</Text>
                 </TouchableOpacity>
             </View>
         </View>

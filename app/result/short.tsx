@@ -173,7 +173,7 @@ export default function ShortResultScreen() {
                             router.push(href);
                         }}
                     >
-                        <Text style={styles.buttonText}>{t.viewFullVersion}</Text>
+                        <Text style={styles.buttonText}>{t.viewFull}</Text>
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity
@@ -186,7 +186,7 @@ export default function ShortResultScreen() {
                             router.push(href);
                         }}
                     >
-                        <Text style={styles.buttonText}>{t.detailedDescriptionCta}</Text>
+                        <Text style={styles.buttonText}>{t.getDetailedDescription}</Text>
                     </TouchableOpacity>
                 )}
                 <TouchableOpacity

@@ -112,8 +112,8 @@ const pt = {
     shareTemplate: "O meu arquétipo é {archetype} · {element}. E o teu?",
     shareError: "Não foi possível partilhar o resultado",
 
-    detailedDescriptionCta: "Ver descrição detalhada",
-    viewFullVersion: "Ver versão completa",
+    getDetailedDescription: "Obter descrição detalhada",
+    viewFull: "Ver versão completa",
     backToResult: "Voltar ao resultado",
     backToProfile: "Voltar ao perfil",
     exitToMain: "Sair para o início",
@@ -121,8 +121,13 @@ const pt = {
     switchProfile: "Trocar perfil",
     goToMain: "Ir para o início",
 
-    paywallTitle: "Análise completa",
-    paywallSubtitle: "Ecrã de pagamento (stub)",
+    paywallTitle: "Descrição detalhada",
+    paywallBody:
+        "Se quiser ir mais fundo, a descrição detalhada revela mais facetas do seu arquétipo.",
+    purchaseSuccessTitle: "Pronto",
+    purchaseSuccessBody:
+        "A descrição detalhada está desbloqueada. Você pode voltar a ela a qualquer momento.",
+    done: "Pronto",
 
 };
 
