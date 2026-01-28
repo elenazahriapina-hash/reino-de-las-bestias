@@ -1,0 +1,6 @@
+export const en = {
+  title: "Reino de las Bestias",
+  quote: "The believer sees a sign.\nThe rational sees a model.\nBoth see themselves.",
+  start: "START",
+  disclaimer: "Not a test. Not a diagnosis. Not a game.",
+};

@@ -21,7 +21,7 @@ export type FullTestPayload = ShortTestPayload & {
     element: string;
 };
 
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.10:8000";
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.14:8000";
 
 export async function sendTestToBackend<T>(
     endpoint: "short",

@@ -56,6 +56,8 @@ const pt = {
     noResult: "Não existem dados de resultado",
     shortError: "Erro ao obter o resultado",
     fullError: "Erro ao obter o resultado",
+    fullOfflineTitle: "Não foi possível carregar o resultado completo agora.",
+    offlineHint: "Parece que você está offline.",
     loadingResult: "O resultado está a ser gerado. Tente novamente.",
     cooldownTitle: "Pausa do teste",
     cooldownBody: "Você só pode refazer o teste uma vez a cada 30 dias.",

@@ -1,0 +1,6 @@
+export const es = {
+  title: "Reino de las Bestias",
+  quote: "El creyente ve una señal.\nEl racional ve un modelo.\nAmbos se ven a sí mismos.",
+  start: "COMENZAR",
+  disclaimer: "No es un test. No es un diagnóstico. No es un juego.",
+};

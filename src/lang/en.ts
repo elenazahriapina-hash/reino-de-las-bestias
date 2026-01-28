@@ -56,6 +56,8 @@ const en = {
     noResult: "No result data available",
     shortError: "Error retrieving the result",
     fullError: "Error retrieving the result",
+    fullOfflineTitle: "Can’t load the full result right now.",
+    offlineHint: "You appear to be offline.",
     loadingResult: "The result is being generated. Please try again.",
     cooldownTitle: "Test cooldown",
     cooldownBody: "You can only retake the test once every 30 days.",

@@ -58,6 +58,8 @@ const es = {
     noResult: "No hay datos de resultado",
     shortError: "Error al obtener el resultado",
     fullError: "Error al obtener el resultado",
+    fullOfflineTitle: "No se puede cargar el resultado completo ahora mismo.",
+    offlineHint: "Parece que estás sin conexión.",
     loadingResult: "El resultado se está generando. Inténtalo de nuevo.",
     cooldownTitle: "Pausa del test",
     cooldownBody: "Solo puedes repetir el test una vez cada 30 días.",
