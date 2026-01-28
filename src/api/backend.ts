@@ -54,7 +54,7 @@ export type ApiResponseMap = {
     full: FullResponse;
 };
 
-export type TestPayload = ShortTestPayload | FullTestPayload;
+export type TestPayload = ShortTestPayload;
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.14:8000";
 
@@ -80,16 +80,20 @@ export async function sendTestToBackend<K extends keyof ApiResponseMap>(
     if (!response.ok) {
         const contentType = response.headers.get("content-type") ?? "";
         let errorBody: unknown = null;
+        let errorBodyLog: string | null = null;
 
         if (contentType.includes("application/json")) {
             try {
                 errorBody = await response.json();
+                errorBodyLog = JSON.stringify(errorBody, null, 2);
             } catch (error) {
                 console.error("Failed to parse error JSON", error);
             }
         } else {
             try {
-                errorBody = await response.text();
+                const text = await response.text();
+                errorBody = text;
+                errorBodyLog = text;
             } catch (error) {
                 console.error("Failed to read error text", error);
             }
@@ -97,7 +101,7 @@ export async function sendTestToBackend<K extends keyof ApiResponseMap>(
 
         console.error("Backend error response", {
             status: response.status,
-            body: errorBody,
+            body: errorBodyLog,
         });
         throw new Error(`HTTP ${response.status}`);
     }
