@@ -19,8 +19,6 @@ export type ShortTestPayload = {
 
 export type FullTestPayload = ShortTestPayload & {
     runId: string;
-    animal: string;
-    element: string;
 };
 
 export type ShortResult = {
@@ -54,7 +52,7 @@ export type ApiResponseMap = {
     full: FullResponse;
 };
 
-export type TestPayload = ShortTestPayload;
+export type TestPayload = ShortTestPayload | FullTestPayload;
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.14:8000";
 

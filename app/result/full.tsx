@@ -64,6 +64,14 @@ export default function FullResultScreen() {
                     console.warn("Failed to parse cached full result", parseError);
                 }
             }
+            const runId = await AsyncStorage.getItem("runId");
+            if (!runId) {
+                router.replace({
+                    pathname: "/result/short",
+                    params: { lang: currentLang },
+                } as unknown as Href);
+                return;
+            }
             const name = (await AsyncStorage.getItem("userName")) ?? "";
             const genderRaw = await AsyncStorage.getItem("gender");
             const gender: Gender =
@@ -86,6 +94,7 @@ export default function FullResultScreen() {
                 lang: currentLang,
                 gender,
                 answers,
+                runId,
             };
 
             const response = await sendTestToBackend("full", payload);

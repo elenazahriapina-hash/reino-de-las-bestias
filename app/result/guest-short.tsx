@@ -57,7 +57,15 @@ export default function GuestShortResultScreen() {
                 if (cached) {
                     try {
                         const cachedResult = JSON.parse(cached) as ShortResult;
+                        if (!cachedResult.runId) {
+                            router.replace({
+                                pathname: "/result/loading",
+                                params: { lang: currentLang },
+                            } as unknown as Href);
+                            return;
+                        }
                         setResult(cachedResult);
+                        await AsyncStorage.setItem("runId", cachedResult.runId);
                         setImage(
                             getArchetypeImage({
                                 animal: cachedResult.animal,

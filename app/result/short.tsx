@@ -60,6 +60,13 @@ export default function ShortResultScreen() {
                 if (cached) {
                     try {
                         const cachedResult = JSON.parse(cached) as ShortResult;
+                        if (!cachedResult.runId) {
+                            router.replace({
+                                pathname: "/result/loading",
+                                params: { lang: currentLang },
+                            } as unknown as Href);
+                            return;
+                        }
                         setResult(cachedResult);
                         await AsyncStorage.multiSet([
                             ["result_animal", cachedResult.animal],
@@ -165,11 +172,17 @@ export default function ShortResultScreen() {
                 {hasFullAccess ? (
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {
-                            const href = {
-                                pathname: "/result/full",
-                                params: { lang: currentLang },
-                            } as unknown as Href;
+                        onPress={async () => {
+                            const runId = await AsyncStorage.getItem("runId");
+                            const href = runId
+                                ? ({
+                                    pathname: "/result/full",
+                                    params: { lang: currentLang },
+                                } as unknown as Href)
+                                : ({
+                                    pathname: "/result/loading",
+                                    params: { lang: currentLang },
+                                } as unknown as Href);
                             router.push(href);
                         }}
                     >
