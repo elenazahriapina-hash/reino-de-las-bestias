@@ -78,19 +78,28 @@ export async function sendTestToBackend<K extends keyof ApiResponseMap>(
     }
 
     if (!response.ok) {
-        // пытаемся достать detail от FastAPI: {"detail":"..."}
-        try {
-            const data = await response.json();
-            const detail =
-                typeof data?.detail === "string"
-                    ? data.detail
-                    : `HTTP ${response.status}`;
-            throw new Error(detail);
-        } catch {
-            // если ответ не JSON
-            const text = await response.text().catch(() => "");
-            throw new Error(text || `HTTP ${response.status}`);
+        const contentType = response.headers.get("content-type") ?? "";
+        let errorBody: unknown = null;
+
+        if (contentType.includes("application/json")) {
+            try {
+                errorBody = await response.json();
+            } catch (error) {
+                console.error("Failed to parse error JSON", error);
+            }
+        } else {
+            try {
+                errorBody = await response.text();
+            } catch (error) {
+                console.error("Failed to read error text", error);
+            }
         }
+
+        console.error("Backend error response", {
+            status: response.status,
+            body: errorBody,
+        });
+        throw new Error(`HTTP ${response.status}`);
     }
 
     return (await response.json()) as ApiResponseMap[K];
