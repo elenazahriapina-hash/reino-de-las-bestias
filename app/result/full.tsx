@@ -18,14 +18,18 @@ import ru from "../../src/lang/ru";
 
 import { sendTestToBackend } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
-import type { Gender } from "../../src/utils/animals";
+import type { AnimalCode, ElementRu, Gender } from "../../src/utils/animals";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
 type FullResponse = {
     type: "full";
     result: {
+        animal: AnimalCode;
+        element: ElementRu;
+        genderForm: Gender;
         text: string;
+        runId?: string;
     };
 };
 
@@ -125,7 +129,7 @@ export default function FullResultScreen() {
     useEffect(() => {
 
         loadFullResult();
-    }, [currentLang, router, t.fullError]);
+    }, [loadFullResult]);
 
     if (loading) {
         return (
