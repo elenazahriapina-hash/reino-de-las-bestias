@@ -11,22 +11,9 @@ import ru from "../../src/lang/ru";
 
 import { sendTestToBackend } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
-import type { AnimalCode, ElementRu, Gender } from "../../src/utils/animals";
+import type { Gender } from "../../src/utils/animals";
 
 type Lang = "ru" | "en" | "es" | "pt";
-
-type ShortResult = {
-    animal: AnimalCode;
-    element: ElementRu;
-    genderForm: Gender;
-    text: string;
-    runId: string;
-};
-
-type ShortResponse = {
-    type: "short";
-    result: ShortResult;
-};
 
 export default function ResultLoadingScreen() {
     const router = useRouter();
@@ -70,7 +57,7 @@ export default function ResultLoadingScreen() {
                 answers,
             };
 
-            const response = await sendTestToBackend<ShortResponse>("short", payload);
+            const response = await sendTestToBackend("short", payload);
             const shortResult = response.result;
 
             await AsyncStorage.multiSet([

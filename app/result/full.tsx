@@ -16,22 +16,13 @@ import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
 import ru from "../../src/lang/ru";
 
-import { sendTestToBackend } from "../../src/api/backend";
+import { sendTestToBackend, type FullResponse } from "../../src/api/backend";
 import { styles } from "../../src/styles/startScreenStyles";
-import type { AnimalCode, ElementRu, Gender } from "../../src/utils/animals";
+import type { Gender } from "../../src/utils/animals";
 
 type Lang = "ru" | "en" | "es" | "pt";
 
-type FullResponse = {
-    type: "full";
-    result: {
-        animal: AnimalCode;
-        element: ElementRu;
-        genderForm: Gender;
-        text: string;
-        runId?: string;
-    };
-};
+type FullResult = FullResponse["result"];
 
 export default function FullResultScreen() {
     const router = useRouter();
@@ -42,13 +33,13 @@ export default function FullResultScreen() {
     const t = translations[currentLang];
 
     const [loading, setLoading] = useState(true);
-    const [result, setResult] = useState<FullResponse["result"] | null>(null);
+    const [result, setResult] = useState<FullResult | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [offlineNotice, setOfflineNotice] = useState(false);
 
     const loadFullResult = useCallback(async () => {
         setLoading(true);
-        let cachedResult: FullResponse["result"] | null = null;
+        let cachedResult: FullResult | null = null;
         try {
             setError(null);
             setOfflineNotice(false);
@@ -65,7 +56,7 @@ export default function FullResultScreen() {
             const cached = await AsyncStorage.getItem("lastFullResult");
             if (cached) {
                 try {
-                    const parsedResult = JSON.parse(cached) as FullResponse["result"];
+                    const parsedResult = JSON.parse(cached) as FullResult;
                     setResult(parsedResult);
                     cachedResult = parsedResult;
                     setLoading(false);
@@ -97,10 +88,7 @@ export default function FullResultScreen() {
                 answers,
             };
 
-            const response = await sendTestToBackend<FullResponse>(
-                "full",
-                payload
-            );
+            const response = await sendTestToBackend("full", payload);
 
             setResult(response.result);
             setOfflineNotice(false);

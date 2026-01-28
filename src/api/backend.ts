@@ -1,5 +1,7 @@
 // src/api/backend.ts
 
+import type { AnimalCode, ElementRu, Gender } from "../utils/animals";
+
 export type TestAnswer = {
     questionId: number;
     answer: string;
@@ -21,21 +23,45 @@ export type FullTestPayload = ShortTestPayload & {
     element: string;
 };
 
+export type ShortResult = {
+    animal: AnimalCode;
+    element: ElementRu;
+    genderForm: Gender;
+    text: string;
+    runId: string;
+};
+
+export type ShortResponse = {
+    type: "short";
+    result: ShortResult;
+};
+
+export type FullResult = {
+    animal: AnimalCode;
+    element: ElementRu;
+    genderForm: Gender;
+    text: string;
+    runId?: string;
+};
+
+export type FullResponse = {
+    type: "full";
+    result: FullResult;
+};
+
+export type ApiResponseMap = {
+    short: ShortResponse;
+    full: FullResponse;
+};
+
+export type TestPayload = ShortTestPayload | FullTestPayload;
+
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.0.14:8000";
 
-export async function sendTestToBackend<T>(
-    endpoint: "short",
-    payload: ShortTestPayload
-): Promise<T>;
-export async function sendTestToBackend<T>(
-    endpoint: "full",
-    payload: FullTestPayload
-): Promise<T>;
-
-export async function sendTestToBackend<T>(
-    endpoint: "short" | "full",
-    payload: ShortTestPayload | FullTestPayload
-): Promise<T> {
+export async function sendTestToBackend<K extends keyof ApiResponseMap>(
+    endpoint: K,
+    payload: TestPayload
+): Promise<ApiResponseMap[K]> {
     let response: Response;
     const url = `${BASE_URL}/analyze/${endpoint}`;
 
@@ -67,5 +93,5 @@ export async function sendTestToBackend<T>(
         }
     }
 
-    return (await response.json()) as T;
+    return (await response.json()) as ApiResponseMap[K];
 }

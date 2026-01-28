@@ -12,7 +12,7 @@ import {
     View,
 } from "react-native";
 
-import { sendTestToBackend } from "../src/api/backend";
+import { sendTestToBackend, type ShortResponse } from "../src/api/backend";
 import en from "../src/lang/en";
 import es from "../src/lang/es";
 import pt from "../src/lang/pt";
@@ -26,18 +26,7 @@ import {
 
 type Lang = "ru" | "en" | "es" | "pt";
 
-type ShortResult = {
-    animal: AnimalCode;
-    element: ElementRu;
-    genderForm: Gender;
-    text: string;
-    runId: string;
-};
-
-type ShortResponse = {
-    type: "short";
-    result: ShortResult;
-};
+type ShortResult = ShortResponse["result"];
 
 type LockedArchetype = {
     animal: AnimalCode;
@@ -206,7 +195,7 @@ export default function SettingsScreen() {
                 lockedGenderForm: lockedArchetype.genderForm,
             };
 
-            const response = await sendTestToBackend<ShortResponse>("short", payload);
+            const response = await sendTestToBackend("short", payload);
             const nextShortResult = response.result;
 
             await AsyncStorage.multiSet([
