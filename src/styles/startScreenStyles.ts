@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     },
 
     button: {
-        backgroundColor: "#FF6B1A",
+        backgroundColor: "#113b75",
         borderRadius: 20,
         minHeight: 52,
         paddingVertical: 14,
@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
     },
 
     buttonText: {
-        color: "#0B1320",
+        color: "#F5F8FF",
         fontSize: 16,
         fontFamily: "Manrope-SemiBold",
         lineHeight: 22,
@@ -228,8 +228,8 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
     },
     answerButtonSelected: {
-        backgroundColor: "#1C2A42",
-        borderColor: "#5C7F5B",
+        backgroundColor: "#1A2C4A",
+        borderColor: "#3A7BD5",
     },
     answerButtonText: {
         color: "#E4E7EB",
