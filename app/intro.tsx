@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter, type Href } from "expo-router";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { IMAGES } from "../src/assets/images";
 import en from "../src/lang/en";
 import es from "../src/lang/es";
 import pt from "../src/lang/pt";
@@ -22,7 +23,7 @@ export default function IntroScreen() {
             <ScrollView contentContainerStyle={introStyles.scrollContent}>
                 <View style={introStyles.heroWrapper}>
                     <Image
-                        source={require("../assets/images/intro/intro-hero.png")}
+                        source={IMAGES.intro.hero}
                         style={introStyles.heroImage}
                         accessibilityLabel="Reino de las Bestias hero logo"
                     />

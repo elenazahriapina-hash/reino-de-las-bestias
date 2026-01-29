@@ -19,6 +19,7 @@ import es from "../../src/lang/es";
 import pt from "../../src/lang/pt";
 import ru from "../../src/lang/ru";
 
+import { IMAGES } from "../../src/assets/images";
 import { questions } from "../../src/data/questions";
 import { styles } from "../../src/styles/startScreenStyles";
 
@@ -40,29 +41,29 @@ export default function QuestionScreen() {
     const [answer, setAnswer] = useState<string>("");
     const [backgroundImage] = useState(() => {
         const images = [
-            require("../../assets/images/questions/wolf.png"),
-            require("../../assets/images/questions/lion.png"),
-            require("../../assets/images/questions/tiger.png"),
-            require("../../assets/images/questions/lynx.png"),
-            require("../../assets/images/questions/panther.png"),
-            require("../../assets/images/questions/bear.png"),
-            require("../../assets/images/questions/fox.png"),
-            require("../../assets/images/questions/wolverine.png"),
-            require("../../assets/images/questions/deer.png"),
-            require("../../assets/images/questions/monkey.png"),
-            require("../../assets/images/questions/rabbit.png"),
-            require("../../assets/images/questions/buffalo.png"),
-            require("../../assets/images/questions/ram.png"),
-            require("../../assets/images/questions/capybara.png"),
-            require("../../assets/images/questions/elephant.png"),
-            require("../../assets/images/questions/horse.png"),
-            require("../../assets/images/questions/eagle.png"),
-            require("../../assets/images/questions/owl.png"),
-            require("../../assets/images/questions/raven.png"),
-            require("../../assets/images/questions/parrot.png"),
-            require("../../assets/images/questions/snake.png"),
-            require("../../assets/images/questions/crocodile.png"),
-            require("../../assets/images/questions/turtle.png"),
+            IMAGES.questions.wolf,
+            IMAGES.questions.lion,
+            IMAGES.questions.tiger,
+            IMAGES.questions.lynx,
+            IMAGES.questions.panther,
+            IMAGES.questions.bear,
+            IMAGES.questions.fox,
+            IMAGES.questions.wolverine,
+            IMAGES.questions.deer,
+            IMAGES.questions.monkey,
+            IMAGES.questions.rabbit,
+            IMAGES.questions.buffalo,
+            IMAGES.questions.ram,
+            IMAGES.questions.capybara,
+            IMAGES.questions.elephant,
+            IMAGES.questions.horse,
+            IMAGES.questions.eagle,
+            IMAGES.questions.owl,
+            IMAGES.questions.raven,
+            IMAGES.questions.parrot,
+            IMAGES.questions.snake,
+            IMAGES.questions.crocodile,
+            IMAGES.questions.turtle,
         ];
         return images[Math.floor(Math.random() * images.length)];
     });
